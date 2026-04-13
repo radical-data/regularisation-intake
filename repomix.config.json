@@ -1,0 +1,13 @@
+{
+	"$schema": "https://repomix.com/schemas/latest/schema.json",
+	"output": {
+		"parsableStyle": false,
+		"fileSummary": true,
+		"directoryStructure": true,
+		"files": true,
+		"removeComments": false,
+		"removeEmptyLines": false,
+		"compress": false,
+		"topFilesLength": 5
+	}
+}
