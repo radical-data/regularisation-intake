@@ -7,7 +7,7 @@ let { data } = $props()
 
 	<div class="card stack">
 		<h1>Check your answers</h1>
-		<p class="hint">Make sure everything looks right before you continue to the result.</p>
+		<p class="hint">Check these answers before you continue. You can change any answer.</p>
 
 		<div class="check-list">
 			{#each data.answers as answer}
@@ -23,7 +23,7 @@ let { data } = $props()
 
 		<div class="actions">
 			<a class="button" href="/result">See result</a>
-			<a class="button secondary" href="/residence-start">Back</a>
+			<a class="button secondary" href="/province">Back</a>
 		</div>
 	</div>
 </section>

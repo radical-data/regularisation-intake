@@ -25,14 +25,11 @@ const showMonthField = $derived(values.yearBucket === '2025')
 </script>
 
 <section class="stack">
-	<p class="eyebrow">Question 1 of 1</p>
+	<p class="eyebrow">Core eligibility</p>
 
 	<div class="card stack">
 		<h1>When did you start living in Spain?</h1>
-		<p class="hint">
-			Choose the option that is closest to your situation. If you started in 2025, we also ask for
-			the month on this page.
-		</p>
+		<p class="hint">An approximate month is enough.</p>
 
 		{#if form?.error}
 			<div class="error-summary" aria-live="assertive">
@@ -82,12 +79,13 @@ const showMonthField = $derived(values.yearBucket === '2025')
 			</fieldset>
 
 			<p class="hint" id="residence-start-hint">
-				We only ask for the month when it is useful for this first triage.
+				Use the year if you can. If needed, we ask for the month to keep this lower-burden while
+				still useful for triage.
 			</p>
 
 			<div class="actions">
 				<button class="button" type="submit">Continue</button>
-				<a class="button secondary" href="/start">Back</a>
+				<a class="button secondary" href="/in-spain-now">Back</a>
 			</div>
 		</form>
 	</div>

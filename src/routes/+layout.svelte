@@ -1,5 +1,12 @@
 <script lang="ts">
 let { children } = $props()
+
+const languages = [
+	{ value: 'es', label: 'Español' },
+	{ value: 'en', label: 'English' },
+	{ value: 'ar', label: 'العربية' },
+	{ value: 'fr', label: 'Français' }
+]
 </script>
 
 <svelte:head>
@@ -12,7 +19,16 @@ let { children } = $props()
 
 <div class="app-shell">
 	<header class="site-header">
-		<div class="site-width"><a class="brand" href="/start">Regularisation intake</a></div>
+		<div class="site-width header-row">
+			<a class="brand" href="/start">Regularisation intake</a>
+			<nav aria-label="Language switcher">
+				<ul class="language-list">
+					{#each languages as language}
+						<li><a href={`/language?set=${language.value}`}>{language.label}</a></li>
+					{/each}
+				</ul>
+			</nav>
+		</div>
 	</header>
 
 	<main class="site-width content">{@render children()}</main>
@@ -228,6 +244,23 @@ let { children } = $props()
 	padding: 1rem 0;
 	font-weight: 700;
 	text-decoration: none;
+}
+
+.header-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.language-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 .content {

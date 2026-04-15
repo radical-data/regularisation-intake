@@ -26,7 +26,7 @@ export const load: PageServerLoad = ({ cookies, url }) => {
 			month: state.answers.residenceStart?.month ?? '',
 			monthUnknown: state.answers.residenceStart?.monthUnknown ?? false
 		},
-		returnTo: getSafeReturnTo(url, '/check-answers')
+		returnTo: getSafeReturnTo(url, '/asylum-history')
 	}
 }
 
@@ -65,6 +65,6 @@ export const actions: Actions = {
 				: undefined
 		})
 
-		redirect(303, resolveReturnTo(formData.get('returnTo'), '/check-answers'))
+		redirect(303, resolveReturnTo(formData.get('returnTo'), '/asylum-history'))
 	}
 }
