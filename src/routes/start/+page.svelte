@@ -3,7 +3,7 @@ import { getTranslator } from '$lib/content'
 
 let { data } = $props()
 
-const tt = $derived(getTranslator(data.locale ?? 'en'))
+const tt = $derived(getTranslator(data.locale ?? 'es'))
 </script>
 
 <section class="stack">

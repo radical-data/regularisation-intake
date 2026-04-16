@@ -22,7 +22,7 @@ let {
 	error,
 	returnTo,
 	backHref,
-	locale = 'en',
+	locale = 'es',
 	children
 }: Props = $props()
 

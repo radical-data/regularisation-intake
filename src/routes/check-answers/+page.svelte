@@ -12,7 +12,7 @@ let {
 	}
 } = $props()
 
-const tt = $derived(getTranslator(data.locale ?? 'en'))
+const tt = $derived(getTranslator(data.locale ?? 'es'))
 </script>
 
 <section class="stack">

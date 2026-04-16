@@ -5,7 +5,7 @@ import { getTranslator } from '$lib/content'
 
 let { children, data } = $props()
 
-const locale = $derived(data.locale ?? 'en')
+const locale = $derived(data.locale ?? 'es')
 const textDirection = $derived(data.textDirection ?? 'ltr')
 const tt = $derived(getTranslator(locale))
 const currentPath = $derived(data.currentPath ?? '/start')

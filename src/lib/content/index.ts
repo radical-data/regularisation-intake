@@ -28,7 +28,7 @@ const messages: Record<Locale, Partial<Record<MessageKey, string>>> = {
 
 const RTL_LOCALES = new Set<Locale>(['ar'])
 
-export const DEFAULT_LOCALE: Locale = 'en'
+export const DEFAULT_LOCALE: Locale = 'es'
 
 export const resolveLocale = (value?: string | null): Locale => {
 	if (value === 'es' || value === 'en' || value === 'fr' || value === 'ar') {

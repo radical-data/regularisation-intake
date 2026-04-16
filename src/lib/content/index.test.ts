@@ -10,7 +10,7 @@ describe('content localisation', () => {
 	it('resolves supported locales and falls back safely', () => {
 		expect(resolveLocale('es')).toBe('es')
 		expect(resolveLocale('fr')).toBe('fr')
-		expect(resolveLocale('nope')).toBe('en')
+		expect(resolveLocale('nope')).toBe('es')
 	})
 
 	it('renders nested references in the requested locale', () => {

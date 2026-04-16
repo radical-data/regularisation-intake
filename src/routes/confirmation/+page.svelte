@@ -3,8 +3,12 @@ import { getTranslator } from '$lib/content'
 
 let { data } = $props()
 
-const tt = $derived(getTranslator(data.locale ?? 'en'))
-const submittedAt = $derived(new Date(data.submittedAt).toLocaleString(data.locale ?? 'en'))
+const tt = $derived(getTranslator(data.locale ?? 'es'))
+const submittedAt = $derived(
+	new Date(data.submittedAt).toLocaleString(data.locale ?? 'es', {
+		timeZone: 'Europe/Madrid'
+	})
+)
 </script>
 
 <section class="stack">

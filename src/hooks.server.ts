@@ -10,6 +10,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	return resolve(event, {
 		transformPageChunk: ({ html }) =>
-			html.replace('<html lang="en" dir="ltr">', `<html lang="${locale}" dir="${dir}">`)
+			html.replace('<html lang="es" dir="ltr">', `<html lang="${locale}" dir="${dir}">`)
 	})
 }

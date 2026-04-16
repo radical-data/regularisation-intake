@@ -5,7 +5,7 @@ import { getTranslator } from '$lib/content'
 import { MONTH_VALUES } from '$lib/journey/types'
 
 let { data, form } = $props()
-const locale = $derived(data.locale ?? 'en')
+const locale = $derived(data.locale ?? 'es')
 const tt = $derived(getTranslator(locale))
 
 type ResidenceStartFormValue = {
