@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Button } from '$lib/components/ui/button'
 import type { Locale } from '$lib/content'
 import { getTranslator } from '$lib/content'
 
@@ -18,7 +19,7 @@ const tt = $derived(getTranslator(data.locale ?? 'es'))
 <section class="stack">
 	<p class="eyebrow">{tt('pages.check_answers.eyebrow')}</p>
 
-	<div class="card stack">
+	<div class="app-card stack">
 		<h1>{tt('pages.check_answers.title')}</h1>
 		<p class="hint">{tt('pages.check_answers.hint')}</p>
 
@@ -29,16 +30,16 @@ const tt = $derived(getTranslator(data.locale ?? 'es'))
 						<h2>{answer.label}</h2>
 						<p>{answer.value}</p>
 					</div>
-					<a class="button secondary" href={answer.changeHref}
-						>{tt('pages.check_answers.change')}</a
+					<Button href={answer.changeHref} variant="outline"
+						>{tt('pages.check_answers.change')}</Button
 					>
 				</section>
 			{/each}
 		</div>
 
 		<div class="actions">
-			<a class="button" href="/result">{tt('pages.check_answers.see_result')}</a>
-			<a class="button secondary" href={data.backHref}>{tt('pages.check_answers.back')}</a>
+			<Button href="/result">{tt('pages.check_answers.see_result')}</Button>
+			<Button href={data.backHref} variant="outline">{tt('pages.check_answers.back')}</Button>
 		</div>
 	</div>
 </section>

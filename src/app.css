@@ -1,0 +1,251 @@
+@import "@fontsource-variable/inter";
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+	--radius: 0.625rem;
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.145 0 0);
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.145 0 0);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.145 0 0);
+	--primary: oklch(0.205 0 0);
+	--primary-foreground: oklch(0.985 0 0);
+	--secondary: oklch(0.97 0 0);
+	--secondary-foreground: oklch(0.205 0 0);
+	--muted: oklch(0.97 0 0);
+	--muted-foreground: oklch(0.556 0 0);
+	--accent: oklch(0.97 0 0);
+	--accent-foreground: oklch(0.205 0 0);
+	--destructive: oklch(0.577 0.245 27.325);
+	--destructive-foreground: oklch(0.985 0 0);
+	--border: oklch(0.922 0 0);
+	--input: oklch(0.922 0 0);
+	--ring: oklch(0.708 0 0);
+	--sidebar: oklch(0.985 0 0);
+	--sidebar-foreground: oklch(0.145 0 0);
+	--sidebar-primary: oklch(0.205 0 0);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.97 0 0);
+	--sidebar-accent-foreground: oklch(0.205 0 0);
+	--sidebar-border: oklch(0.922 0 0);
+	--sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+	--background: oklch(0.145 0 0);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.205 0 0);
+	--card-foreground: oklch(0.985 0 0);
+	--popover: oklch(0.205 0 0);
+	--popover-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.922 0 0);
+	--primary-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.269 0 0);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.269 0 0);
+	--muted-foreground: oklch(0.708 0 0);
+	--accent: oklch(0.269 0 0);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(0.704 0.191 22.216);
+	--destructive-foreground: oklch(0.985 0 0);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--ring: oklch(0.556 0 0);
+	--sidebar: oklch(0.205 0 0);
+	--sidebar-foreground: oklch(0.985 0 0);
+	--sidebar-primary: oklch(0.488 0.243 264.376);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.269 0 0);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	html {
+		font-family: InterVariable, Inter, ui-sans-serif, system-ui, sans-serif;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		margin: 0;
+		min-height: 100vh;
+	}
+
+	a {
+		@apply text-inherit;
+	}
+
+	button,
+	input,
+	select,
+	textarea {
+		font: inherit;
+	}
+
+	:focus-visible {
+		@apply outline-ring ring-ring/50 ring-3 outline-none;
+	}
+
+	h1 {
+		margin: 0;
+		font-size: clamp(1.875rem, 4vw, 2.6rem);
+		line-height: 1.1;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 1.25rem;
+	}
+
+	p {
+		margin: 0;
+		line-height: 1.6;
+	}
+}
+
+@layer components {
+	.app-shell {
+		@apply min-h-screen bg-background text-foreground;
+	}
+
+	.site-header {
+		@apply border-border/80 bg-background/90 supports-[backdrop-filter]:bg-background/80 border-b text-start backdrop-blur;
+	}
+
+	.site-width {
+		width: min(100% - 2rem, 48rem);
+		margin: 0 auto;
+	}
+
+	.brand {
+		@apply inline-block py-4 font-bold no-underline;
+	}
+
+	.language-list {
+		@apply flex flex-wrap gap-3 list-none p-0 m-0;
+	}
+
+	.app-card {
+		@apply bg-card text-card-foreground border-border rounded-xl border p-6 shadow-sm;
+	}
+
+	.form-field {
+		@apply grid gap-2;
+	}
+
+	.question-group {
+		@apply grid gap-3 border-0 p-0 m-0;
+	}
+
+	.field-row {
+		@apply grid gap-4;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.app-option-row {
+		@apply border-border bg-card text-card-foreground flex items-start gap-3 rounded-xl border p-4;
+	}
+
+	.app-option-row > input {
+		margin-block-start: 0.2rem;
+	}
+
+	.app-input {
+		@apply border-input bg-background text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 min-h-12 w-full rounded-xl border px-4 py-3 shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-3;
+	}
+
+	.result-pill {
+		@apply bg-secondary text-secondary-foreground inline-flex items-center rounded-full px-3 py-2 text-sm font-semibold;
+	}
+
+	.error-summary {
+		@apply bg-destructive/10 rounded-xl border p-4;
+		border-color: var(--color-destructive);
+		border-inline-start-width: 6px;
+	}
+
+	.error-text {
+		@apply text-destructive;
+	}
+}
+
+@layer utilities {
+	.stack {
+		@apply grid gap-4;
+	}
+
+	.eyebrow {
+		@apply text-muted-foreground m-0 text-sm font-semibold;
+	}
+
+	.hint {
+		@apply text-muted-foreground;
+	}
+
+	.actions {
+		@apply flex flex-wrap items-center gap-3;
+	}
+
+	.check-list {
+		@apply grid gap-4;
+	}
+
+	.check-row {
+		@apply border-border grid gap-2 border-b pb-4;
+	}
+
+	.sr-only {
+		@apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+		clip: rect(0, 0, 0, 0);
+	}
+}
+
+@media (max-width: 640px) {
+	.field-row {
+		grid-template-columns: 1fr;
+	}
+}

@@ -1,12 +1,18 @@
 <script lang="ts">
+import FormField from '$lib/components/forms/FormField.svelte'
 import ChoiceGroup from '$lib/components/questions/ChoiceGroup.svelte'
 import QuestionPage from '$lib/components/questions/QuestionPage.svelte'
+import { Label } from '$lib/components/ui/label'
+import { NativeSelect, NativeSelectOption } from '$lib/components/ui/native-select'
 import { getTranslator } from '$lib/content'
 import { MONTH_VALUES } from '$lib/journey/types'
 
 let { data, form } = $props()
+
 const locale = $derived(data.locale ?? 'es')
 const tt = $derived(getTranslator(locale))
+const monthId = 'residence-start-month'
+const monthUnknownId = 'monthUnknown'
 
 type ResidenceStartFormValue = {
 	yearBucket: string
@@ -24,6 +30,7 @@ const multiValue = $derived(
 		? rawValue.filter((entry): entry is string => typeof entry === 'string')
 		: []
 )
+
 const residenceValue = $derived.by<ResidenceStartFormValue>(() => {
 	if (!isRecord(rawValue)) {
 		return { yearBucket: '', month: '', monthUnknown: false }
@@ -37,9 +44,20 @@ const residenceValue = $derived.by<ResidenceStartFormValue>(() => {
 		monthUnknown: Boolean(candidate.monthUnknown)
 	}
 })
+
 const showMonthField = $derived(
 	data.step.adapter === 'residence-start' && residenceValue.yearBucket === '2025'
 )
+
+const residenceOptions = $derived([
+	{
+		value: '2024_or_earlier',
+		label: tt('steps.residence_start.options.2024_or_earlier')
+	},
+	{ value: '2025', label: tt('steps.residence_start.options.2025') },
+	{ value: '2026', label: tt('steps.residence_start.options.2026') },
+	{ value: 'not_sure', label: tt('steps.residence_start.options.not_sure') }
+])
 
 const contactValue = $derived.by(() => {
 	if (!isRecord(rawValue)) {
@@ -80,45 +98,32 @@ const contactValue = $derived.by(() => {
 			values={multiValue}
 		/>
 	{:else if data.step.adapter === 'select'}
-		<label class="field">
-			<span class="sr-only">{data.step.title}</span>
-			<select name={data.step.field}>
-				<option value="">{tt('common.choose_an_option')}</option>
+		<FormField label={data.step.title} forId={`${data.step.field}-select`}>
+			<NativeSelect
+				id={`${data.step.field}-select`}
+				name={data.step.field}
+				value={scalarValue}
+				class="w-full"
+			>
+				<NativeSelectOption value="">{tt('common.choose_an_option')}</NativeSelectOption>
 				{#each data.step.options as option}
-					<option value={option.value} selected={scalarValue === option.value}>
-						{option.label}
-					</option>
+					<NativeSelectOption value={option.value}>{option.label}</NativeSelectOption>
 				{/each}
-			</select>
-		</label>
+			</NativeSelect>
+		</FormField>
 	{:else if data.step.adapter === 'residence-start'}
-		<fieldset class="question-group">
-			<legend>{tt('common.choose_one_answer')}</legend>
-			{#each [
-				{
-					value: '2024_or_earlier',
-					label: tt('steps.residence_start.options.2024_or_earlier')
-				},
-				{ value: '2025', label: tt('steps.residence_start.options.2025') },
-				{ value: '2026', label: tt('steps.residence_start.options.2026') },
-				{ value: 'not_sure', label: tt('steps.residence_start.options.not_sure') }
-			] as option}
-				<label class="option">
-					<input
-						type="radio"
-						name="yearBucket"
-						value={option.value}
-						checked={residenceValue.yearBucket === option.value}
-					>
-					<span>{option.label}</span>
-				</label>
-			{/each}
-
+		<div class="stack">
+			<ChoiceGroup
+				type="radio"
+				legend={tt('common.choose_one_answer')}
+				name="yearBucket"
+				options={residenceOptions}
+				value={residenceValue.yearBucket}
+			/>
 			{#if showMonthField}
-				<div class="card stack inline-subsection">
-					<label class="field">
-						<span>{tt('steps.residence_start.month_prompt')}</span>
-						<select name="month" autocomplete="bday-month">
+				<div class="app-card stack inline-subsection">
+					<FormField label={tt('steps.residence_start.month_prompt')} forId={monthId}>
+						<select id={monthId} class="app-input" name="month" autocomplete="bday-month">
 							<option value="">{tt('common.choose_month')}</option>
 							{#each MONTH_VALUES as month}
 								<option value={month} selected={residenceValue.month === month}>
@@ -126,15 +131,19 @@ const contactValue = $derived.by(() => {
 								</option>
 							{/each}
 						</select>
-					</label>
-
-					<label class="option">
-						<input type="checkbox" name="monthUnknown" checked={residenceValue.monthUnknown}>
-						<span>{tt('steps.residence_start.month_unknown')}</span>
-					</label>
+					</FormField>
+					<div class="app-option-row">
+						<input
+							id={monthUnknownId}
+							type="checkbox"
+							name="monthUnknown"
+							checked={residenceValue.monthUnknown}
+						>
+						<Label for={monthUnknownId}>{tt('steps.residence_start.month_unknown')}</Label>
+					</div>
 				</div>
 			{/if}
-		</fieldset>
+		</div>
 	{:else if data.step.adapter === 'contact-preference'}
 		<div class="stack">
 			<ChoiceGroup
@@ -145,10 +154,16 @@ const contactValue = $derived.by(() => {
 				value={contactValue.contactMethod}
 			/>
 			{#if contactValue.contactMethod && contactValue.contactMethod !== 'through_organisation' && contactValue.contactMethod !== 'do_not_contact_yet'}
-				<label class="field">
-					<span>{tt('steps.contact.detail_label')}</span>
-					<input type="text" name="contactValue" value={contactValue.contactValue} dir="auto">
-				</label>
+				<FormField label={tt('steps.contact.detail_label')} forId="contactValue">
+					<input
+						id="contactValue"
+						class="app-input"
+						type="text"
+						name="contactValue"
+						value={contactValue.contactValue}
+						dir="auto"
+					>
+				</FormField>
 			{/if}
 		</div>
 	{/if}

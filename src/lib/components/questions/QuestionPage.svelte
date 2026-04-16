@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Button } from '$lib/components/ui/button'
 import type { Locale } from '$lib/content'
 import { getTranslator } from '$lib/content'
 
@@ -34,7 +35,7 @@ const tt = $derived(getTranslator(locale))
 		<p class="eyebrow">{eyebrow}</p>
 	{/if}
 
-	<div class="card stack">
+	<div class="app-card stack">
 		<h1>{title}</h1>
 
 		{#if body}
@@ -60,8 +61,8 @@ const tt = $derived(getTranslator(locale))
 			{@render children?.()}
 
 			<div class="actions">
-				<button class="button" type="submit">{tt('common.continue')}</button>
-				<a class="button secondary" href={backHref}>{tt('common.back')}</a>
+				<Button type="submit">{tt('common.continue')}</Button>
+				<Button href={backHref} variant="outline">{tt('common.back')}</Button>
 			</div>
 		</form>
 	</div>

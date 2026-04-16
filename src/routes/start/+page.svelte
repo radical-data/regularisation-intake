@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Button } from '$lib/components/ui/button'
 import { getTranslator } from '$lib/content'
 
 let { data } = $props()
@@ -8,7 +9,7 @@ const tt = $derived(getTranslator(data.locale ?? 'es'))
 
 <section class="stack">
 	<p class="eyebrow">{tt('pages.start.eyebrow')}</p>
-	<div class="card stack">
+	<div class="app-card stack">
 		<h1>{tt('pages.start.title')}</h1>
 		<p>{tt('pages.start.lead')}</p>
 		<p>{tt('pages.start.not_official')}</p>
@@ -25,6 +26,6 @@ const tt = $derived(getTranslator(data.locale ?? 'es'))
 			</ul>
 		</div>
 
-		<div class="actions"><a class="button" href="/language">{tt('pages.start.start_now')}</a></div>
+		<div class="actions"><Button href="/language">{tt('pages.start.start_now')}</Button></div>
 	</div>
 </section>

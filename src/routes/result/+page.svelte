@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Button } from '$lib/components/ui/button'
 import { getTranslator } from '$lib/content'
 
 let { data } = $props()
@@ -10,7 +11,7 @@ const provinceLabel = $derived(tt(`steps.province.options.${data.province}`))
 <section class="stack">
 	<p class="eyebrow">{tt('pages.result.eyebrow')}</p>
 
-	<div class="card stack">
+	<div class="app-card stack">
 		<span class="result-pill">{tt(`result.title.${data.result.resultState}`)}</span>
 		<h1>{tt(`result.lead.${data.result.resultState}`)}</h1>
 		<p>{tt(data.result.explanationKey)}</p>
@@ -75,11 +76,11 @@ const provinceLabel = $derived(tt(`steps.province.options.${data.province}`))
 		</div>
 
 		<div class="actions">
-			<a class="button" href="/referral">{tt('pages.result.action.help')}</a>
-			<a class="button secondary" href="/check-answers"
-				>{tt('pages.result.action.back_to_answers')}</a
+			<Button href="/referral">{tt('pages.result.action.help')}</Button>
+			<Button href="/check-answers" variant="outline"
+				>{tt('pages.result.action.back_to_answers')}</Button
 			>
-			<a class="button secondary" href="/start?new=1">{tt('pages.result.action.start_again')}</a>
+			<Button href="/start?new=1" variant="outline">{tt('pages.result.action.start_again')}</Button>
 		</div>
 	</div>
 </section>
