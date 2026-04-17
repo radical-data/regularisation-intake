@@ -1,3 +1,4 @@
+/* layout */
 @import "@fontsource-variable/inter";
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -233,39 +234,73 @@
 }
 
 @layer components {
+	:root {
+		--layout-width: 56rem;
+	}
 	.app-shell {
 		@apply min-h-screen bg-background text-foreground antialiased;
 	}
 
+	.skip-link {
+		@apply bg-background text-foreground border-border fixed start-4 top-4 z-[100] rounded-xl border px-4 py-3 font-medium shadow-sm no-underline;
+		transform: translateY(-140%);
+		transition: transform 0.16s ease;
+	}
+
+	.skip-link:focus-visible {
+		transform: translateY(0);
+	}
+
 	.site-header {
 		@apply border-border/80 bg-background/90 supports-[backdrop-filter]:bg-background/80 border-b text-start backdrop-blur;
+		padding-block: 1rem 1.125rem;
 	}
 
 	.site-width {
-		width: min(100% - 2rem, 48rem);
+		width: min(100% - 2rem, var(--layout-width));
 		margin: 0 auto;
 	}
 
+	.site-header-inner {
+		@apply grid gap-4;
+	}
+
+	.site-header-top {
+		@apply grid gap-2;
+	}
+
 	.brand {
-		@apply inline-flex items-center gap-3 py-4 text-base font-semibold tracking-tight no-underline;
+		@apply inline-flex min-h-11 max-w-[42rem] flex-col items-start justify-center gap-1 no-underline;
+	}
+
+	.brand-mark {
+		@apply text-foreground text-lg font-semibold tracking-tight;
+		line-height: 1.1;
+	}
+
+	.brand-tagline {
+		@apply text-muted-foreground text-sm leading-5;
+		text-wrap: pretty;
 	}
 
 	.site-header-main {
-		@apply flex flex-wrap items-center gap-3;
+		@apply grid min-w-0 gap-3;
 	}
 
 	.service-nav {
-		@apply flex flex-wrap items-center gap-1;
-	}
-	.service-nav-link {
-		@apply text-muted-foreground hover:text-foreground inline-flex min-h-10 items-center rounded-full px-3 text-sm font-medium no-underline transition-colors;
-	}
-	.service-nav-link[aria-current="page"] {
-		@apply bg-accent text-accent-foreground;
+		@apply min-w-0;
 	}
 
-	.task-grid {
-		@apply grid gap-4 md:grid-cols-2;
+	.service-nav-list {
+		@apply m-0 grid list-none gap-2 p-0;
+	}
+
+	.service-nav-link {
+		@apply text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex min-h-11 items-center justify-center rounded-full border border-border/70 bg-background px-4 text-sm font-medium no-underline transition-colors focus-visible:ring-3 whitespace-nowrap;
+	}
+
+	.service-nav-link[aria-current="page"] {
+		@apply bg-accent text-accent-foreground border-transparent;
 	}
 
 	.task-card {
@@ -276,32 +311,36 @@
 		@apply grid gap-4;
 	}
 
+	.language-nav {
+		@apply grid justify-items-start gap-1;
+	}
+
+	.language-nav-label {
+		@apply text-muted-foreground inline-flex min-h-8 items-center gap-2 text-[0.7rem] font-semibold tracking-[0.08em] uppercase whitespace-nowrap;
+	}
+
 	.language-list {
-		@apply m-0 flex flex-wrap gap-2 list-none p-0;
+		@apply m-0 flex flex-wrap items-center gap-1 list-none p-0;
 	}
 
 	.language-link {
-		@apply text-muted-foreground hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex min-h-10 items-center rounded-full border border-transparent px-3 text-sm font-medium no-underline transition-colors focus-visible:ring-3;
+		@apply text-muted-foreground hover:text-foreground focus-visible:ring-ring/50 inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium no-underline underline-offset-4 transition-colors focus-visible:ring-3 whitespace-nowrap;
 	}
 
 	.language-link[aria-current="true"] {
-		@apply border-border bg-accent text-accent-foreground shadow-xs;
+		@apply bg-muted text-foreground underline decoration-current;
 	}
 
-	.app-card {
-		@apply bg-card text-card-foreground border-border rounded-2xl border p-6 shadow-sm md:p-8;
+	.language-link:not([aria-current="true"]) {
+		@apply hover:bg-muted/60;
 	}
 
-	.panel {
-		@apply bg-card text-card-foreground border-border rounded-2xl border p-5 shadow-sm md:p-6;
+	.language-link:focus-visible {
+		@apply rounded-lg;
 	}
 
-	.panel-subtle {
-		@apply bg-muted/60 text-foreground rounded-2xl border border-transparent p-5 md:p-6;
-	}
-
-	.section-block {
-		@apply grid gap-3;
+	.task-grid {
+		@apply grid gap-4 md:grid-cols-2;
 	}
 
 	.prose-block {
@@ -498,15 +537,76 @@
 		@apply flex flex-wrap items-center gap-3 pt-2;
 	}
 
-	.language-nav {
-		@apply grid gap-1 justify-items-start md:justify-items-end;
+	.site-header-actions {
+		@apply flex flex-wrap items-center gap-2;
 	}
 
-	.language-nav-label {
-		@apply text-muted-foreground text-xs font-semibold tracking-[0.04em] uppercase;
+	.app-card {
+		@apply bg-card text-card-foreground border-border rounded-2xl border p-6 shadow-sm md:p-8;
 	}
-	.language-nav-label.compact {
-		@apply mb-1;
+
+	.panel {
+		@apply bg-card text-card-foreground border-border rounded-2xl border p-5 shadow-sm md:p-6;
+	}
+
+	.panel-subtle {
+		@apply bg-muted/60 text-foreground rounded-2xl border border-transparent p-5 md:p-6;
+	}
+
+	.section-block {
+		@apply grid gap-3;
+	}
+
+	@media (min-width: 960px) {
+		.site-header-main {
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: start;
+			column-gap: 1.5rem;
+		}
+
+		.service-nav-list {
+			@apply flex flex-wrap items-center gap-2;
+		}
+
+		.language-list {
+			@apply justify-end;
+		}
+
+		.language-nav {
+			@apply justify-items-end;
+		}
+	}
+
+	@media (max-width: 959px) {
+		.site-header {
+			padding-block: 0.875rem 1rem;
+		}
+
+		.site-header-inner {
+			gap: 1rem;
+		}
+
+		.brand {
+			max-width: 100%;
+		}
+
+		.brand,
+		.service-nav-link,
+		.language-link {
+			min-height: 2.75rem;
+		}
+
+		.language-nav-label {
+			min-height: 2rem;
+		}
+
+		.service-nav-list {
+			grid-template-columns: 1fr;
+		}
+
+		.language-list {
+			@apply gap-1;
+		}
 	}
 
 	.directory-toolbar {

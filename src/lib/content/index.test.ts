@@ -34,6 +34,10 @@ describe('content localisation', () => {
 		expect(translate('en', 'chrome.app_title')).toBe('Primer Paso')
 		expect(translate('es', 'chrome.brand')).toBe('Primer Paso')
 		expect(translate('fr', 'chrome.brand')).toBe('Primer Paso')
+		expect(translate('en', 'chrome.skip_to_main')).toBe('Skip to main content')
+		expect(translate('es', 'chrome.tagline')).toBe(
+			'Orientación independiente para el proceso de regularización de España de 2026'
+		)
 		expect(translate('ar', 'chrome.brand')).toBe('Primer Paso')
 		expect(translate('en', 'chrome.nav.home')).toBe('Home')
 		expect(translate('es', 'chrome.nav.organisations')).toBe('Buscar organizaciones')
