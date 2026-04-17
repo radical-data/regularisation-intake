@@ -71,6 +71,7 @@ const heroTone = $derived.by(() => {
 		<section class="cta-panel">
 			<div class="section-block">
 				<h2 class="section-title">{tt('pages.result.next_step_title')}</h2>
+
 				<p class="lead-text">{tt(data.result.summary.nextStepKey)}</p>
 			</div>
 			{#if data.result.recommendedRoute === 'official_portal'}
@@ -81,14 +82,41 @@ const heroTone = $derived.by(() => {
 					</Button>
 				</div>
 			{:else}
-				<p class="hint">{tt('pages.result.next_step.collaborating_organisation_hint')}</p>
+				<p class="hint">
+					Use the organisations directory to find a collaborating organisation that may be able to
+					help.
+				</p>
 				<div class="actions">
-					<Button href={data.collaboratorsPdfUrl} target="_blank" rel="noreferrer">
-						{tt('pages.result.action.open_collaborators_pdf')}
-						<ExternalLinkIcon class="size-4" />
-					</Button>
+					<Button href={data.organisationsHref}>Find collaborating organisations</Button>
 				</div>
 			{/if}
+		</section>
+
+		<section class="panel section-block">
+			<h2 class="section-title">Find a collaborating organisation</h2>
+			<p class="lead-text">
+				Browse the public directory of collaborating organisations without repeating the questionnaire.
+			</p>
+			<div class="actions">
+				<Button
+					href={data.organisationsHref}
+					variant={data.result.recommendedRoute === 'collaborating_organisation'
+						? 'default'
+						: 'secondary'}
+				>
+					Open organisations directory
+				</Button>
+				{#if data.result.recommendedRoute === 'official_portal'}
+					<Button
+						href={data.officialPortalUrl}
+						target="_blank"
+						rel="noreferrer"
+						variant="outline"
+					>
+						Open official portal
+					</Button>
+				{/if}
+			</div>
 		</section>
 
 		<section class="panel section-block">
@@ -104,7 +132,7 @@ const heroTone = $derived.by(() => {
 					<div class="list-section">
 						<h3>{tt('pages.result.checklist.already_have')}</h3>
 						<ul>
-							{#each data.result.checklist.alreadyHave as itemKey}
+							{#each data.result.checklist.alreadyHave as itemKey (itemKey)}
 								<li>{tt(itemKey)}</li>
 							{/each}
 						</ul>
@@ -115,7 +143,7 @@ const heroTone = $derived.by(() => {
 					<div class="list-section">
 						<h3>{tt('pages.result.checklist.still_need')}</h3>
 						<ul>
-							{#each data.result.checklist.stillNeed as itemKey}
+							{#each data.result.checklist.stillNeed as itemKey (itemKey)}
 								<li>{tt(itemKey)}</li>
 							{/each}
 						</ul>
@@ -126,7 +154,7 @@ const heroTone = $derived.by(() => {
 					<div class="list-section">
 						<h3>{tt('pages.result.checklist.discuss_with_support')}</h3>
 						<ul>
-							{#each data.result.checklist.discussWithSupport as itemKey}
+							{#each data.result.checklist.discussWithSupport as itemKey (itemKey)}
 								<li>{tt(itemKey)}</li>
 							{/each}
 						</ul>
@@ -137,7 +165,7 @@ const heroTone = $derived.by(() => {
 					<div class="list-section">
 						<h3>{tt('pages.result.checklist.unresolved')}</h3>
 						<ul>
-							{#each data.result.checklist.unresolved as itemKey}
+							{#each data.result.checklist.unresolved as itemKey (itemKey)}
 								<li>{tt(itemKey)}</li>
 							{/each}
 						</ul>

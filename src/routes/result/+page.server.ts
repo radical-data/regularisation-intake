@@ -1,5 +1,5 @@
 import { resolveLocale } from '$lib/content'
-import { COLLABORATORS_PDF_URL, OFFICIAL_PORTAL_URL } from '$lib/server/handover'
+import { OFFICIAL_PORTAL_URL } from '$lib/server/handover'
 import { getJourneyState } from '$lib/server/journey'
 import { runTriage } from '$lib/triage/engine'
 import type { PageServerLoad } from './$types'
@@ -15,8 +15,8 @@ export const load: PageServerLoad = ({ cookies }) => {
 		province: state.answers.province,
 		sessionId: state.sessionId,
 		officialPortalUrl: OFFICIAL_PORTAL_URL,
-		collaboratorsPdfUrl: COLLABORATORS_PDF_URL,
+		organisationsHref: '/organisations',
 		handoverHref: '/handover',
-		handoverJsonHref: '/handover.json'
+		handoverJsonHref: '/handover.json',
 	}
 }
