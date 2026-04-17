@@ -18,19 +18,16 @@ describe('content localisation', () => {
 			renderReference(
 				{
 					type: 'message',
-					key: 'answers.residence_start.2025_month',
-					values: { month: { type: 'message', key: 'months.january' } }
+					key: 'pages.handover.reference',
+					values: { sessionId: 'ABC123' }
 				},
 				'es'
 			)
-		).toBe('Enero de 2025')
+		).toBe('Número de referencia: ABC123')
 		expect(getTextDirection('ar')).toBe('rtl')
 	})
 
-	it('includes new contact and support labels in Spanish', () => {
-		expect(translate('es', 'steps.contact.options.do_not_contact_yet')).toBe(
-			'No me contacten todavía'
-		)
+	it('includes support labels in Spanish', () => {
 		expect(translate('es', 'steps.support_needs.options.child_or_dependant_support')).toBe(
 			'Ayuda también para niños, niñas o personas dependientes'
 		)

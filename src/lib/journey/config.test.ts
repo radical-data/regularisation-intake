@@ -7,17 +7,16 @@ import { fieldAdapters } from './field-adapters'
 
 const scenarios: JourneyAnswers[] = [
 	{},
+	{ presentBeforeCutoff: 'yes' },
+	{ presentBeforeCutoff: 'no' },
 	{ asylumHistory: 'yes' },
 	{ asylumHistory: 'no' },
 	{ asylumHistory: 'yes', asylumBeforeCutoff: 'yes' },
 	{ asylumBeforeCutoff: 'yes' },
-	{ asylumBeforeCutoff: 'no' },
-	{ referralChoice: 'contact_me' },
-	{ referralChoice: 'show_options' },
-	{ referralChoice: 'no_thanks' }
+	{ asylumBeforeCutoff: 'no' }
 ]
 
-const allowedAbsoluteRoutes = new Set(['/check-answers', '/confirmation', '/result', '/start'])
+const allowedAbsoluteRoutes = new Set(['/check-answers', '/result', '/start'])
 const knownStepRoutes = new Set(journeySteps.map((step) => `/${step.slug}`))
 
 describe('journey config', () => {
@@ -34,9 +33,7 @@ describe('journey config', () => {
 
 	it('declares options for choice-based steps', () => {
 		for (const step of journeySteps) {
-			if (step.adapter !== 'residence-start') {
-				expect('options' in step && step.options.length > 0).toBe(true)
-			}
+			expect(step.options.length > 0).toBe(true)
 		}
 	})
 

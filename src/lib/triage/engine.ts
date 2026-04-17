@@ -1,52 +1,7 @@
 import type { MessageKey } from '$lib/content'
-import type {
-	EvidenceBeforeCutoffValue,
-	EvidenceRecentValue,
-	JourneyAnswers,
-	MonthValue
-} from '$lib/journey/types'
+import type { EvidenceBeforeCutoffValue, EvidenceRecentValue, JourneyAnswers } from '$lib/journey/types'
 
 import type { PreparationChecklist, ResultSummary, TriageResult } from './types'
-
-const MONTH_NUMBERS: Record<MonthValue, number> = {
-	january: 1,
-	february: 2,
-	march: 3,
-	april: 4,
-	may: 5,
-	june: 6,
-	july: 7,
-	august: 8,
-	september: 9,
-	october: 10,
-	november: 11,
-	december: 12
-}
-
-const parseResidenceStart = (answers: JourneyAnswers) => {
-	if (!answers.residenceStart) {
-		return null
-	}
-
-	const { yearBucket, month, monthUnknown } = answers.residenceStart
-
-	switch (yearBucket) {
-		case '2024_or_earlier':
-			return { yearBucket, month: undefined, monthUnknown: false }
-		case '2026':
-			return { yearBucket, month: undefined, monthUnknown: false }
-		case 'not_sure':
-			return { yearBucket, month: undefined, monthUnknown: true }
-		case '2025':
-			return {
-				yearBucket,
-				month: month ? MONTH_NUMBERS[month] : undefined,
-				monthUnknown: monthUnknown ?? false
-			}
-		default:
-			return null
-	}
-}
 
 const hasAnyStrongBeforeCutoffEvidence = (values: EvidenceBeforeCutoffValue[] = []) =>
 	values.some((value) =>
@@ -95,9 +50,8 @@ const buildChecklist = (
 	)
 	const timelineUncertain =
 		answers.inSpainNow === 'not_sure' ||
-		!answers.residenceStart ||
-		answers.residenceStart.yearBucket === 'not_sure' ||
-		(answers.residenceStart.yearBucket === '2025' && answers.residenceStart.monthUnknown) ||
+		answers.presentBeforeCutoff === 'not_sure' ||
+		answers.presentBeforeCutoff === undefined ||
 		answers.asylumHistory === 'not_sure' ||
 		(answers.asylumHistory === 'yes' && answers.asylumBeforeCutoff === 'not_sure') ||
 		answers.fiveMonthStay === 'not_sure'
@@ -197,8 +151,8 @@ const getReasonKey = (answers: JourneyAnswers, fallback: MessageKey): MessageKey
 
 export const runTriage = (answers: JourneyAnswers): TriageResult => {
 	const flags = new Set<MessageKey>()
-	const residenceStart = parseResidenceStart(answers)
 	const inSpainNow = answers.inSpainNow
+	const presentBeforeCutoff = answers.presentBeforeCutoff
 	const asylumHistory = answers.asylumHistory
 	const asylumBeforeCutoff = answers.asylumBeforeCutoff
 	const fiveMonthStay = answers.fiveMonthStay
@@ -242,9 +196,8 @@ export const runTriage = (answers: JourneyAnswers): TriageResult => {
 
 	if (
 		inSpainNow === 'not_sure' ||
-		!residenceStart ||
-		residenceStart.yearBucket === 'not_sure' ||
-		(residenceStart.yearBucket === '2025' && residenceStart.monthUnknown) ||
+		presentBeforeCutoff === undefined ||
+		presentBeforeCutoff === 'not_sure' ||
 		asylumHistory === 'not_sure' ||
 		(asylumHistory === 'yes' && asylumBeforeCutoff === 'not_sure') ||
 		fiveMonthStay === 'not_sure'
@@ -256,7 +209,7 @@ export const runTriage = (answers: JourneyAnswers): TriageResult => {
 		flags.add('result.flag.five_month_requirement_risk')
 	}
 
-	if (residenceStart?.yearBucket === '2026') {
+	if (presentBeforeCutoff === 'no') {
 		const resultState = 'another_route_may_fit_better'
 		const recommendedRoute = 'collaborating_organisation'
 		return {

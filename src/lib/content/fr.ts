@@ -28,7 +28,7 @@ export const fr = {
 	'pages.start.expectation.one_question': 'une question à la fois',
 	'pages.start.expectation.review': 'une étape de vérification avant le résultat',
 	'pages.start.expectation.timeline':
-		'une idée approximative de la date à laquelle vous avez commencé à vivre en Espagne',
+		'si vous étiez en Espagne avant le 1er janvier 2026 et au cours des 5 derniers mois',
 	'pages.start.start_now': 'Commencer le questionnaire',
 	'pages.check_answers.eyebrow': 'Vérification',
 	'pages.check_answers.title': 'Vérifiez vos réponses',
@@ -115,16 +115,17 @@ export const fr = {
 	'pages.confirmation.action.start_again': 'Recommencer',
 	'eyebrows.session_setup': 'Pour commencer',
 	'eyebrows.eligibility': 'Éligibilité',
-	'eyebrows.route_split': 'Votre situation',
-	'eyebrows.route_asylum': 'Vos documents',
-	'eyebrows.route_non_asylum': 'Votre situation',
-	'eyebrows.identity': 'Vos documents',
-	'eyebrows.evidence_cutoff': 'Preuves de résidence',
-	'eyebrows.evidence_recent': 'Preuves de résidence',
-	'eyebrows.specialist': 'Besoins d’accompagnement supplémentaires',
-	'eyebrows.routing': 'Aide locale',
+	'eyebrows.route_split': 'Éligibilité',
+	'eyebrows.route_asylum': 'Documents',
+	'eyebrows.route_non_asylum': 'Éligibilité',
+	'eyebrows.identity': 'Documents',
+	'eyebrows.documents': 'Documents',
+	'eyebrows.evidence_cutoff': 'Documents',
+	'eyebrows.evidence_recent': 'Documents',
+	'eyebrows.specialist': 'Besoins d’accompagnement',
+	'eyebrows.routing': 'Besoins d’accompagnement',
 	'eyebrows.referral': 'Aide locale',
-	'eyebrows.support': 'Besoins d’accompagnement supplémentaires',
+	'eyebrows.support': 'Besoins d’accompagnement',
 	'eyebrows.contact': 'Comment nous pouvons vous contacter',
 	'months.january': 'Janvier',
 	'months.february': 'Février',
@@ -157,6 +158,14 @@ export const fr = {
 	'steps.in_spain_now.title': 'Êtes-vous actuellement en Espagne ?',
 	'steps.in_spain_now.check_answers_label': 'Présence actuelle en Espagne',
 	'steps.in_spain_now.error': 'Choisissez si vous êtes actuellement en Espagne.',
+	'steps.presence_before_cutoff.title':
+		'Viviez-vous déjà en Espagne avant le 1er janvier 2026 ?',
+	'steps.presence_before_cutoff.hint':
+		'Répondez en fonction du fait que vous viviez déjà en Espagne avant la date limite',
+	'steps.presence_before_cutoff.check_answers_label':
+		'Résidence en Espagne avant le 1er janvier 2026',
+	'steps.presence_before_cutoff.error':
+		'Choisissez si vous viviez déjà en Espagne avant le 1er janvier 2026.',
 	'steps.common.options.yes': 'Oui',
 	'steps.common.options.no': 'Non',
 	'steps.common.options.not_sure': 'Je ne suis pas sûr·e',
@@ -330,7 +339,8 @@ export const fr = {
 	'answers.contact.with_value': '{method} : {value}',
 	'result.reason.not_in_spain_now':
 		'Vous avez indiqué que vous n’êtes pas actuellement en Espagne.',
-	'result.reason.after_cutoff': 'Vous avez indiqué avoir commencé à vivre en Espagne en 2026.',
+	'result.reason.after_cutoff':
+		'Vous avez indiqué que vous ne viviez pas encore en Espagne avant le 1er janvier 2026.',
 	'result.reason.specialist_review':
 		'Une ou plusieurs de vos réponses suggèrent qu’il serait plus prudent d’obtenir de l’aide avant de déposer une demande.',
 	'result.reason.specialist_review_criminal_record':
@@ -346,7 +356,7 @@ export const fr = {
 	'result.explanation.not_in_spain_now':
 		'D’après vos réponses, ce n’est probablement pas la bonne voie pour vous en ce moment.',
 	'result.explanation.after_cutoff':
-		'D’après vos réponses, cette voie n’est probablement pas la plus adaptée à votre situation.',
+		'D’après vos réponses, cette voie n’est probablement pas la plus adaptée, car la date limite risque de ne pas être respectée.',
 	'result.explanation.specialist_review':
 		'Vos réponses suggèrent qu’une personne spécialisée devrait examiner votre situation avant la prochaine étape.',
 	'result.explanation.not_enough_information':

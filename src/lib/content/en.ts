@@ -19,7 +19,8 @@ export const en = {
 	'pages.start.expectation.duration': 'about 5 to 8 minutes',
 	'pages.start.expectation.one_question': 'one question at a time',
 	'pages.start.expectation.review': 'a review step before the result',
-	'pages.start.expectation.timeline': 'a rough idea of when you started living in Spain',
+	'pages.start.expectation.timeline':
+		'whether you were in Spain before 1 January 2026 and during the last 5 months',
 	'pages.start.start_now': 'Start the questionnaire',
 	'pages.check_answers.eyebrow': 'Review',
 	'pages.check_answers.title': 'Check your answers',
@@ -105,16 +106,17 @@ export const en = {
 	'common.choose_all_that_apply': 'Choose all that apply',
 	'eyebrows.session_setup': 'Getting started',
 	'eyebrows.eligibility': 'Eligibility',
-	'eyebrows.route_split': 'Your situation',
-	'eyebrows.route_asylum': 'Your documents',
-	'eyebrows.route_non_asylum': 'Your situation',
-	'eyebrows.identity': 'Your documents',
-	'eyebrows.evidence_cutoff': 'Proof of residence',
-	'eyebrows.evidence_recent': 'Proof of residence',
-	'eyebrows.specialist': 'Extra support needs',
-	'eyebrows.routing': 'Local support',
+	'eyebrows.route_split': 'Eligibility',
+	'eyebrows.route_asylum': 'Documents',
+	'eyebrows.route_non_asylum': 'Eligibility',
+	'eyebrows.identity': 'Documents',
+	'eyebrows.documents': 'Documents',
+	'eyebrows.evidence_cutoff': 'Documents',
+	'eyebrows.evidence_recent': 'Documents',
+	'eyebrows.specialist': 'Support needs',
+	'eyebrows.routing': 'Support needs',
 	'eyebrows.referral': 'Local support',
-	'eyebrows.support': 'Extra support needs',
+	'eyebrows.support': 'Support needs',
 	'eyebrows.contact': 'How we can contact you',
 	'months.january': 'January',
 	'months.february': 'February',
@@ -146,6 +148,13 @@ export const en = {
 	'steps.in_spain_now.title': 'Are you in Spain now?',
 	'steps.in_spain_now.check_answers_label': 'Are you in Spain now?',
 	'steps.in_spain_now.error': 'Choose whether you are in Spain now.',
+	'steps.presence_before_cutoff.title': 'Were you already living in Spain before 1 January 2026?',
+	'steps.presence_before_cutoff.hint':
+		'Answer based on whether you were already living in Spain before the cut-off date',
+	'steps.presence_before_cutoff.check_answers_label':
+		'Living in Spain before 1 January 2026',
+	'steps.presence_before_cutoff.error':
+		'Choose whether you were already living in Spain before 1 January 2026.',
 	'steps.common.options.yes': 'Yes',
 	'steps.common.options.no': 'No',
 	'steps.common.options.not_sure': "I'm not sure",
@@ -301,7 +310,7 @@ export const en = {
 	'answers.residence_start.2025_month': '{month} 2025',
 	'answers.contact.with_value': '{method}: {value}',
 	'result.reason.not_in_spain_now': 'You said you are not in Spain now.',
-	'result.reason.after_cutoff': 'You said you started living in Spain in 2026.',
+	'result.reason.after_cutoff': 'You said you were not yet living in Spain before 1 January 2026.',
 	'result.reason.specialist_review':
 		'One or more of your answers suggests that it would be safer to get support before you apply.',
 	'result.reason.specialist_review_criminal_record':
@@ -317,7 +326,7 @@ export const en = {
 	'result.explanation.not_in_spain_now':
 		'Based on your answers, this probably is not the right route for you right now.',
 	'result.explanation.after_cutoff':
-		'Based on your answers, this route probably is not the best fit.',
+		'Based on your answers, this route probably is not the best fit because the cut-off date may not be met.',
 	'result.explanation.specialist_review':
 		'Your answers suggest that a specialist should review your situation before the next step.',
 	'result.explanation.not_enough_information':

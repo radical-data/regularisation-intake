@@ -35,7 +35,7 @@ pnpm preview
 
 ## Project shape
 
-- src/routes — journey pages, check answers, result, confirmation
+- src/routes — journey pages, check answers, result, handover
 - src/lib/journey — step config, field adapters, shared types
 - src/lib/triage — triage engine and result types
 - src/lib/server — cookie-backed journey state

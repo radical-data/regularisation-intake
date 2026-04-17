@@ -25,7 +25,8 @@ export const es = {
 	'pages.start.expectation.duration': 'entre 5 y 8 minutos',
 	'pages.start.expectation.one_question': 'una pregunta a la vez',
 	'pages.start.expectation.review': 'un paso de revisión antes del resultado',
-	'pages.start.expectation.timeline': 'una idea aproximada de cuándo empezaste a vivir en España',
+	'pages.start.expectation.timeline':
+		'si estabas en España antes del 1 de enero de 2026 y durante los últimos 5 meses',
 	'pages.start.start_now': 'Empezar el cuestionario',
 	'pages.check_answers.eyebrow': 'Revisión',
 	'pages.check_answers.title': 'Revisa tus respuestas',
@@ -110,16 +111,17 @@ export const es = {
 	'pages.confirmation.action.start_again': 'Empezar de nuevo',
 	'eyebrows.session_setup': 'Para empezar',
 	'eyebrows.eligibility': 'Elegibilidad',
-	'eyebrows.route_split': 'Tu situación',
-	'eyebrows.route_asylum': 'Tus documentos',
-	'eyebrows.route_non_asylum': 'Tu situación',
-	'eyebrows.identity': 'Tus documentos',
-	'eyebrows.evidence_cutoff': 'Pruebas de residencia',
-	'eyebrows.evidence_recent': 'Pruebas de residencia',
-	'eyebrows.specialist': 'Necesidades de apoyo adicionales',
-	'eyebrows.routing': 'Apoyo local',
+	'eyebrows.route_split': 'Elegibilidad',
+	'eyebrows.route_asylum': 'Documentos',
+	'eyebrows.route_non_asylum': 'Elegibilidad',
+	'eyebrows.identity': 'Documentos',
+	'eyebrows.documents': 'Documentos',
+	'eyebrows.evidence_cutoff': 'Documentos',
+	'eyebrows.evidence_recent': 'Documentos',
+	'eyebrows.specialist': 'Necesidades de apoyo',
+	'eyebrows.routing': 'Necesidades de apoyo',
 	'eyebrows.referral': 'Apoyo local',
-	'eyebrows.support': 'Necesidades de apoyo adicionales',
+	'eyebrows.support': 'Necesidades de apoyo',
 	'eyebrows.contact': 'Cómo podemos contactarte',
 	'months.january': 'Enero',
 	'months.february': 'Febrero',
@@ -151,6 +153,12 @@ export const es = {
 	'steps.in_spain_now.title': '¿Estás en España ahora?',
 	'steps.in_spain_now.check_answers_label': 'Si estás en España ahora',
 	'steps.in_spain_now.error': 'Elige si estás en España ahora.',
+	'steps.presence_before_cutoff.title': '¿Ya vivías en España antes del 1 de enero de 2026?',
+	'steps.presence_before_cutoff.hint':
+		'Responde según si ya vivías en España antes de la fecha límite',
+	'steps.presence_before_cutoff.check_answers_label': 'Vivir en España antes del 1 de enero de 2026',
+	'steps.presence_before_cutoff.error':
+		'Elige si ya vivías en España antes del 1 de enero de 2026.',
 	'steps.common.options.yes': 'Sí',
 	'steps.common.options.no': 'No',
 	'steps.common.options.not_sure': 'No estoy seguro/a',
@@ -310,7 +318,8 @@ export const es = {
 	'answers.residence_start.2025_month': '{month} de 2025',
 	'answers.contact.with_value': '{method}: {value}',
 	'result.reason.not_in_spain_now': 'Dijiste que ahora no estás en España.',
-	'result.reason.after_cutoff': 'Dijiste que empezaste a vivir en España en 2026.',
+	'result.reason.after_cutoff':
+		'Dijiste que aún no vivías en España antes del 1 de enero de 2026.',
 	'result.reason.specialist_review':
 		'Una o más de tus respuestas sugieren que sería más seguro recibir apoyo antes de solicitar.',
 	'result.reason.specialist_review_criminal_record':
@@ -326,7 +335,7 @@ export const es = {
 	'result.explanation.not_in_spain_now':
 		'Según tus respuestas, probablemente esta no sea la vía adecuada para ti en este momento.',
 	'result.explanation.after_cutoff':
-		'Según tus respuestas, probablemente esta vía no sea la mejor opción para tu caso.',
+		'Según tus respuestas, probablemente esta vía no sea la mejor opción porque es posible que no se cumpla la fecha límite.',
 	'result.explanation.specialist_review':
 		'Tus respuestas sugieren que una persona especialista debería revisar tu situación antes del siguiente paso.',
 	'result.explanation.not_enough_information':

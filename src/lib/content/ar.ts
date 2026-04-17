@@ -24,7 +24,8 @@ export const ar = {
 	'pages.start.expectation.duration': 'حوالي 5 إلى 8 دقائق',
 	'pages.start.expectation.one_question': 'سؤال واحد في كل مرة',
 	'pages.start.expectation.review': 'خطوة مراجعة قبل النتيجة',
-	'pages.start.expectation.timeline': 'فكرة تقريبية عن موعد بدء إقامتك في إسبانيا',
+	'pages.start.expectation.timeline':
+		'ما إذا كنت في إسبانيا قبل 1 يناير 2026 وخلال الأشهر الخمسة الماضية',
 	'pages.start.start_now': 'ابدأ الاستبيان',
 	'pages.check_answers.eyebrow': 'مراجعة',
 	'pages.check_answers.title': 'راجع إجاباتك',
@@ -106,16 +107,17 @@ export const ar = {
 	'pages.confirmation.action.start_again': 'ابدأ من جديد',
 	'eyebrows.session_setup': 'للبدء',
 	'eyebrows.eligibility': 'الأهلية',
-	'eyebrows.route_split': 'وضعك',
-	'eyebrows.route_asylum': 'مستنداتك',
-	'eyebrows.route_non_asylum': 'وضعك',
-	'eyebrows.identity': 'مستنداتك',
-	'eyebrows.evidence_cutoff': 'إثبات الإقامة',
-	'eyebrows.evidence_recent': 'إثبات الإقامة',
-	'eyebrows.specialist': 'احتياجات دعم إضافية',
-	'eyebrows.routing': 'الدعم المحلي',
+	'eyebrows.route_split': 'الأهلية',
+	'eyebrows.route_asylum': 'المستندات',
+	'eyebrows.route_non_asylum': 'الأهلية',
+	'eyebrows.identity': 'المستندات',
+	'eyebrows.documents': 'المستندات',
+	'eyebrows.evidence_cutoff': 'المستندات',
+	'eyebrows.evidence_recent': 'المستندات',
+	'eyebrows.specialist': 'احتياجات الدعم',
+	'eyebrows.routing': 'احتياجات الدعم',
 	'eyebrows.referral': 'الدعم المحلي',
-	'eyebrows.support': 'احتياجات دعم إضافية',
+	'eyebrows.support': 'احتياجات الدعم',
 	'eyebrows.contact': 'كيف يمكننا التواصل معك',
 	'months.january': 'يناير',
 	'months.february': 'فبراير',
@@ -147,6 +149,12 @@ export const ar = {
 	'steps.in_spain_now.title': 'هل أنت في إسبانيا الآن؟',
 	'steps.in_spain_now.check_answers_label': 'هل أنت في إسبانيا الآن؟',
 	'steps.in_spain_now.error': 'اختر ما إذا كنت في إسبانيا الآن.',
+	'steps.presence_before_cutoff.title': 'هل كنت تعيش بالفعل في إسبانيا قبل 1 يناير 2026؟',
+	'steps.presence_before_cutoff.hint':
+		'أجب بناءً على ما إذا كنت تعيش بالفعل في إسبانيا قبل تاريخ الحد',
+	'steps.presence_before_cutoff.check_answers_label': 'العيش في إسبانيا قبل 1 يناير 2026',
+	'steps.presence_before_cutoff.error':
+		'اختر ما إذا كنت تعيش بالفعل في إسبانيا قبل 1 يناير 2026.',
 	'steps.common.options.yes': 'نعم',
 	'steps.common.options.no': 'لا',
 	'steps.common.options.not_sure': 'لست متأكداً',
@@ -294,7 +302,8 @@ export const ar = {
 	'answers.residence_start.2025_month': '{month} 2025',
 	'answers.contact.with_value': '{method}: {value}',
 	'result.reason.not_in_spain_now': 'ذكرت أنك لست في إسبانيا الآن.',
-	'result.reason.after_cutoff': 'ذكرت أنك بدأت العيش في إسبانيا في 2026.',
+	'result.reason.after_cutoff':
+		'ذكرت أنك لم تكن تعيش بعد في إسبانيا قبل 1 يناير 2026.',
 	'result.reason.specialist_review':
 		'تشير واحدة أو أكثر من إجاباتك إلى أن الحصول على دعم قبل التقديم سيكون أكثر أماناً.',
 	'result.reason.specialist_review_criminal_record':
@@ -309,7 +318,8 @@ export const ar = {
 		'تشير إجاباتك إلى أن التواريخ والمستندات التي لديك قد تتوافق مع هذا المسار.',
 	'result.explanation.not_in_spain_now':
 		'استناداً إلى إجاباتك، فغالباً ليس هذا هو المسار المناسب لك الآن.',
-	'result.explanation.after_cutoff': 'استناداً إلى إجاباتك، فغالباً لا يكون هذا المسار الأنسب لوضعك.',
+	'result.explanation.after_cutoff':
+		'استناداً إلى إجاباتك، فغالباً لا يكون هذا المسار الأنسب لأن تاريخ الحد قد لا يكون مستوفى.',
 	'result.explanation.specialist_review':
 		'تشير إجاباتك إلى أن مختصاً ينبغي أن يراجع وضعك قبل الخطوة التالية.',
 	'result.explanation.not_enough_information': 'لا توجد معلومات كافية بعد لاقتراح أفضل خطوة تالية.',

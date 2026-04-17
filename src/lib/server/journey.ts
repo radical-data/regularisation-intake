@@ -2,7 +2,6 @@ import type { Cookies } from '@sveltejs/kit'
 
 import type {
 	CompletionModeValue,
-	ContactMethodValue,
 	EvidenceBeforeCutoffValue,
 	EvidenceRecentValue,
 	FiveMonthStayValue,
@@ -10,12 +9,8 @@ import type {
 	JourneyAnswers,
 	JourneyState,
 	LanguageValue,
-	MonthValue,
 	NonAsylumGroundValue,
 	ProvinceValue,
-	ReferralChoiceValue,
-	ResidenceStartAnswer,
-	ResidenceStartYearBucket,
 	SpecialistFlagValue,
 	SupportNeedValue,
 	YesNoNotSureValue
@@ -23,18 +18,13 @@ import type {
 
 import {
 	COMPLETION_MODE_VALUES,
-	CONTACT_METHOD_VALUES,
 	EVIDENCE_BEFORE_CUTOFF_VALUES,
 	EVIDENCE_RECENT_VALUES,
 	FIVE_MONTH_STAY_VALUES,
 	IDENTITY_DOCUMENT_VALUES,
 	LANGUAGE_VALUES,
-	MONTH_LABELS,
-	MONTH_VALUES,
 	NON_ASYLUM_GROUND_VALUES,
 	PROVINCE_VALUES,
-	REFERRAL_CHOICE_VALUES,
-	RESIDENCE_START_YEAR_BUCKETS,
 	SPECIALIST_FLAG_VALUES,
 	SUPPORT_NEED_VALUES,
 	YES_NO_NOT_SURE_VALUES
@@ -76,9 +66,7 @@ const isEvidenceBeforeCutoffValue = isEnumValue(EVIDENCE_BEFORE_CUTOFF_VALUES)
 const isEvidenceRecentValue = isEnumValue(EVIDENCE_RECENT_VALUES)
 const isSpecialistFlagValue = isEnumValue(SPECIALIST_FLAG_VALUES)
 const isProvinceValue = isEnumValue(PROVINCE_VALUES)
-const isReferralChoiceValue = isEnumValue(REFERRAL_CHOICE_VALUES)
 const isSupportNeedValue = isEnumValue(SUPPORT_NEED_VALUES)
-const isContactMethodValue = isEnumValue(CONTACT_METHOD_VALUES)
 
 const isStringArrayOf = <T extends string>(
 	value: unknown,
@@ -90,27 +78,6 @@ const formatList = (values: string[]) => {
 	return values.join(', ')
 }
 
-const isResidenceStartYearBucket = (value: unknown): value is ResidenceStartYearBucket =>
-	typeof value === 'string' &&
-	RESIDENCE_START_YEAR_BUCKETS.includes(value as ResidenceStartYearBucket)
-
-const isMonthValue = (value: unknown): value is MonthValue =>
-	typeof value === 'string' && MONTH_VALUES.includes(value as MonthValue)
-
-const isResidenceStartAnswer = (value: unknown): value is ResidenceStartAnswer => {
-	if (!value || typeof value !== 'object') {
-		return false
-	}
-
-	const candidate = value as Record<string, unknown>
-
-	return (
-		isResidenceStartYearBucket(candidate.yearBucket) &&
-		(candidate.month === undefined || isMonthValue(candidate.month)) &&
-		(candidate.monthUnknown === undefined || typeof candidate.monthUnknown === 'boolean')
-	)
-}
-
 const isJourneyState = (value: unknown): value is JourneyState => {
 	if (!value || typeof value !== 'object') {
 		return false
@@ -118,8 +85,6 @@ const isJourneyState = (value: unknown): value is JourneyState => {
 
 	const candidate = value as Record<string, unknown>
 	const answers = (candidate.answers ?? {}) as Record<string, unknown>
-	const contactValueValid =
-		answers.contactValue === undefined || typeof answers.contactValue === 'string'
 
 	return (
 		typeof candidate.sessionId === 'string' &&
@@ -128,7 +93,8 @@ const isJourneyState = (value: unknown): value is JourneyState => {
 		(answers.language === undefined || isLanguageValue(answers.language)) &&
 		(answers.completionMode === undefined || isCompletionModeValue(answers.completionMode)) &&
 		(answers.inSpainNow === undefined || isYesNoNotSureValue(answers.inSpainNow)) &&
-		(answers.residenceStart === undefined || isResidenceStartAnswer(answers.residenceStart)) &&
+		(answers.presentBeforeCutoff === undefined ||
+			isYesNoNotSureValue(answers.presentBeforeCutoff)) &&
 		(answers.asylumHistory === undefined || isYesNoNotSureValue(answers.asylumHistory)) &&
 		(answers.asylumBeforeCutoff === undefined || isYesNoNotSureValue(answers.asylumBeforeCutoff)) &&
 		(answers.fiveMonthStay === undefined || isFiveMonthStayValue(answers.fiveMonthStay)) &&
@@ -145,11 +111,8 @@ const isJourneyState = (value: unknown): value is JourneyState => {
 		(answers.specialistFlags === undefined ||
 			isStringArrayOf(answers.specialistFlags, isSpecialistFlagValue)) &&
 		(answers.province === undefined || isProvinceValue(answers.province)) &&
-		(answers.referralChoice === undefined || isReferralChoiceValue(answers.referralChoice)) &&
 		(answers.supportNeeds === undefined ||
-			isStringArrayOf(answers.supportNeeds, isSupportNeedValue)) &&
-		(answers.contactMethod === undefined || isContactMethodValue(answers.contactMethod)) &&
-		contactValueValid
+			isStringArrayOf(answers.supportNeeds, isSupportNeedValue))
 	)
 }
 
@@ -200,29 +163,6 @@ export const clearJourneyState = (cookies: Cookies) => {
 	cookies.delete(JOURNEY_COOKIE, {
 		path: '/'
 	})
-}
-
-export const formatResidenceStartAnswer = (value?: ResidenceStartAnswer) => {
-	if (!value) {
-		return 'Not answered'
-	}
-
-	switch (value.yearBucket) {
-		case '2024_or_earlier':
-			return '2024 or earlier'
-		case '2026':
-			return '2026'
-		case 'not_sure':
-			return "I'm not sure"
-		case '2025':
-			if (value.monthUnknown) {
-				return '2025 — month not sure'
-			}
-
-			return value.month ? `${MONTH_LABELS[value.month]} 2025` : '2025'
-		default:
-			return 'Not answered'
-	}
 }
 
 const labelMap =
@@ -357,12 +297,6 @@ export const formatProvinceAnswer = labelMap<ProvinceValue>({
 	other: 'Another province'
 })
 
-export const formatReferralChoiceAnswer = labelMap<ReferralChoiceValue>({
-	contact_me: "Yes, I'd like someone to contact me",
-	show_options: 'Yes, show me support options near me',
-	no_thanks: "No, I'll keep this for now"
-})
-
 export const formatSupportNeedsAnswer = (values?: SupportNeedValue[]) =>
 	formatList(
 		(values ?? []).map(
@@ -380,15 +314,6 @@ export const formatSupportNeedsAnswer = (values?: SupportNeedValue[]) =>
 				})[value]
 		)
 	)
-
-export const formatContactMethodAnswer = labelMap<ContactMethodValue>({
-	sms: 'SMS',
-	whatsapp: 'WhatsApp',
-	phone: 'Phone call',
-	email: 'Email',
-	do_not_contact_yet: 'Do not contact me yet',
-	through_organisation: 'Through the organisation helping me now'
-})
 
 export const getSafeReturnTo = (url: URL, fallback: string) =>
 	safeRelativePath(url.searchParams.get('returnTo'), fallback)

@@ -6,21 +6,17 @@ describe('runTriage', () => {
 	it('routes out when the person is not in Spain now', () => {
 		const result = runTriage({
 			inSpainNow: 'no',
-			residenceStart: {
-				yearBucket: '2024_or_earlier'
-			}
+			presentBeforeCutoff: 'yes'
 		})
 
 		expect(result.resultState).toBe('another_route_may_fit_better')
 		expect(result.flags).toContain('result.flag.not_in_spain_now')
 	})
 
-	it('routes out when the residence start is after the cutoff', () => {
+	it('routes out when the person was not living in Spain before the cutoff', () => {
 		const result = runTriage({
 			inSpainNow: 'yes',
-			residenceStart: {
-				yearBucket: '2026'
-			}
+			presentBeforeCutoff: 'no'
 		})
 
 		expect(result.resultState).toBe('another_route_may_fit_better')
@@ -29,7 +25,7 @@ describe('runTriage', () => {
 	it('returns not enough information when the core timeline is uncertain', () => {
 		const result = runTriage({
 			inSpainNow: 'not_sure',
-			residenceStart: { yearBucket: 'not_sure' },
+			presentBeforeCutoff: 'not_sure',
 			asylumBeforeCutoff: 'not_sure',
 			fiveMonthStay: 'not_sure'
 		})
@@ -41,9 +37,7 @@ describe('runTriage', () => {
 	it('returns specialist review for criminal record concern', () => {
 		const result = runTriage({
 			inSpainNow: 'yes',
-			residenceStart: {
-				yearBucket: '2024_or_earlier'
-			},
+			presentBeforeCutoff: 'yes',
 			asylumBeforeCutoff: 'no',
 			fiveMonthStay: 'yes',
 			specialistFlags: ['criminal_record_worry']
@@ -55,9 +49,7 @@ describe('runTriage', () => {
 	it('adds a family-support flag when extra dependant support is needed', () => {
 		const result = runTriage({
 			inSpainNow: 'yes',
-			residenceStart: {
-				yearBucket: '2024_or_earlier'
-			},
+			presentBeforeCutoff: 'yes',
 			asylumBeforeCutoff: 'no',
 			fiveMonthStay: 'yes',
 			identityDocuments: ['current_passport'],
@@ -73,9 +65,7 @@ describe('runTriage', () => {
 	it('returns specialist review for safeguarding and urgent-support flags', () => {
 		const result = runTriage({
 			inSpainNow: 'yes',
-			residenceStart: {
-				yearBucket: '2024_or_earlier'
-			},
+			presentBeforeCutoff: 'yes',
 			asylumBeforeCutoff: 'no',
 			fiveMonthStay: 'yes',
 			specialistFlags: ['unsafe_sharing_digitally']
@@ -87,7 +77,7 @@ describe('runTriage', () => {
 	it('returns evidence weak when timing fits but papers are thin', () => {
 		const result = runTriage({
 			inSpainNow: 'yes',
-			residenceStart: { yearBucket: '2024_or_earlier' },
+			presentBeforeCutoff: 'yes',
 			asylumBeforeCutoff: 'no',
 			fiveMonthStay: 'yes',
 			identityDocuments: ['current_passport'],
@@ -98,13 +88,10 @@ describe('runTriage', () => {
 		expect(result.resultState).toBe('possible_but_needs_more_evidence')
 	})
 
-	it('returns likely in scope for a 2025 answer with a valid month', () => {
+	it('returns likely in scope when the person was in Spain before the cutoff and has strong evidence', () => {
 		const result = runTriage({
 			inSpainNow: 'yes',
-			residenceStart: {
-				yearBucket: '2025',
-				month: 'november'
-			},
+			presentBeforeCutoff: 'yes',
 			asylumBeforeCutoff: 'no',
 			fiveMonthStay: 'yes',
 			identityDocuments: ['current_passport'],

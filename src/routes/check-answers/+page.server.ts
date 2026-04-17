@@ -1,4 +1,3 @@
-import { redirect } from '@sveltejs/kit'
 import { getTranslator, renderReference, resolveLocale } from '$lib/content'
 import { journeySteps } from '$lib/journey/config'
 import { fieldAdapters } from '$lib/journey/field-adapters'
@@ -7,9 +6,6 @@ import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = ({ cookies }) => {
 	const state = getJourneyState(cookies)
-	if (!state.answers.province) {
-		redirect(303, '/province')
-	}
 
 	const locale = resolveLocale(state.answers.language)
 	const tt = getTranslator(locale)
