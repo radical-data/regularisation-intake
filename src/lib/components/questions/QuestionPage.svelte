@@ -24,19 +24,19 @@ const tt = $derived(getTranslator(locale))
 	<div class="app-card stack">
 		{#if error}
 			<div class="error-summary" aria-live="assertive">
-				<h2>{tt('common.problem')}</h2>
+				<h2 class="error-summary-title">{tt('common.problem')}</h2>
 				<p class="error-text">{error}</p>
 			</div>
 		{/if}
 
-		<form method="POST" class="stack">
+		<form method="POST" class="result-grid">
 			{#if returnTo}
 				<input type="hidden" name="returnTo" value={returnTo}>
 			{/if}
 
 			{@render children?.()}
 
-			<div class="actions">
+			<div class="page-actions">
 				<Button type="submit">{tt('common.continue')}</Button>
 				<Button href={backHref} variant="outline">{tt('common.back')}</Button>
 			</div>

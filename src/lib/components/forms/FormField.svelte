@@ -20,13 +20,13 @@ const errorId = $derived(forId ? `${forId}-error` : undefined)
 <div class="form-field">
 	{#if label}
 		{#if asPageHeading}
-			<Label for={forId}> <h1>{label}</h1> </Label>
+			<Label class="form-label" for={forId}> <h1 class="page-title">{label}</h1> </Label>
 		{:else}
-			<Label for={forId}>{label}</Label>
+			<Label class="form-label" for={forId}>{label}</Label>
 		{/if}
 	{/if}
 	{#if description && description !== label}
-		<p>{description}</p>
+		<p class="form-description">{description}</p>
 	{/if}
 	{#if hint}
 		<p class="hint" id={hintId}>{hint}</p>

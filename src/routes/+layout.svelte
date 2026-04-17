@@ -1,4 +1,5 @@
 <script lang="ts">
+import LanguagesIcon from '@lucide/svelte/icons/languages'
 import '../app.css'
 import { browser } from '$app/environment'
 import { invalidateAll } from '$app/navigation'
@@ -51,11 +52,18 @@ const switchLanguage = async (event: MouseEvent, languageValue: string) => {
 	<header class="site-header">
 		<div class="site-width flex flex-wrap items-center justify-between gap-4">
 			<a class="brand" href="/start">{tt('chrome.brand')}</a>
-			<nav aria-label={tt('chrome.language_switcher_label')}>
+			<nav class="language-nav" aria-label={tt('chrome.language_switcher_label')}>
+				<p class="language-nav-label">
+					<span class="inline-flex items-center gap-2">
+						<LanguagesIcon class="size-3.5" aria-hidden="true" />
+						{tt('chrome.language_switcher_label')}
+					</span>
+				</p>
 				<ul class="language-list">
 					{#each languages as language}
 						<li>
 							<a
+								class="language-link"
 								href={getLanguageHref(language.value)}
 								aria-current={language.value === locale ? 'true' : undefined}
 								onclick={(event) => switchLanguage(event, language.value)}

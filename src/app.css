@@ -12,17 +12,37 @@
 	--card-foreground: oklch(0.145 0 0);
 	--popover: oklch(1 0 0);
 	--popover-foreground: oklch(0.145 0 0);
-	--primary: oklch(0.205 0 0);
+	--primary: oklch(0.43 0.12 255);
 	--primary-foreground: oklch(0.985 0 0);
-	--secondary: oklch(0.97 0 0);
-	--secondary-foreground: oklch(0.205 0 0);
-	--muted: oklch(0.97 0 0);
-	--muted-foreground: oklch(0.556 0 0);
-	--accent: oklch(0.97 0 0);
-	--accent-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.965 0.015 255);
+	--secondary-foreground: oklch(0.22 0.03 255);
+	--muted: oklch(0.975 0.01 255);
+	--muted-foreground: oklch(0.48 0.02 255);
+	--accent: oklch(0.95 0.03 255);
+	--accent-foreground: oklch(0.24 0.04 255);
 	--destructive: oklch(0.577 0.245 27.325);
 	--destructive-foreground: oklch(0.985 0 0);
-	--border: oklch(0.922 0 0);
+
+	--success: oklch(0.72 0.14 154);
+	--success-foreground: oklch(0.2 0.03 154);
+	--success-soft: oklch(0.96 0.03 154);
+	--warning: oklch(0.79 0.16 85);
+	--warning-foreground: oklch(0.28 0.04 85);
+	--warning-soft: oklch(0.97 0.03 85);
+	--info: oklch(0.68 0.12 240);
+	--info-foreground: oklch(0.24 0.03 240);
+	--info-soft: oklch(0.96 0.02 240);
+
+	--result-likely: var(--success);
+	--result-likely-foreground: var(--success-foreground);
+	--result-likely-soft: var(--success-soft);
+	--result-possible: var(--info);
+	--result-possible-foreground: var(--info-foreground);
+	--result-possible-soft: var(--info-soft);
+	--result-review: var(--warning);
+	--result-review-foreground: var(--warning-foreground);
+	--result-review-soft: var(--warning-soft);
+	--border: oklch(0.9 0.015 255);
 	--input: oklch(0.922 0 0);
 	--ring: oklch(0.708 0 0);
 	--sidebar: oklch(0.985 0 0);
@@ -43,16 +63,34 @@
 	--popover: oklch(0.205 0 0);
 	--popover-foreground: oklch(0.985 0 0);
 	--primary: oklch(0.922 0 0);
-	--primary-foreground: oklch(0.205 0 0);
-	--secondary: oklch(0.269 0 0);
+	--primary-foreground: oklch(0.25 0.05 255);
+	--secondary: oklch(0.29 0.02 255);
 	--secondary-foreground: oklch(0.985 0 0);
-	--muted: oklch(0.269 0 0);
-	--muted-foreground: oklch(0.708 0 0);
-	--accent: oklch(0.269 0 0);
+	--muted: oklch(0.26 0.01 255);
+	--muted-foreground: oklch(0.76 0.015 255);
+	--accent: oklch(0.31 0.03 255);
 	--accent-foreground: oklch(0.985 0 0);
 	--destructive: oklch(0.704 0.191 22.216);
 	--destructive-foreground: oklch(0.985 0 0);
-	--border: oklch(1 0 0 / 10%);
+	--success: oklch(0.79 0.12 154);
+	--success-foreground: oklch(0.16 0.03 154);
+	--success-soft: oklch(0.31 0.04 154);
+	--warning: oklch(0.84 0.13 85);
+	--warning-foreground: oklch(0.2 0.04 85);
+	--warning-soft: oklch(0.32 0.03 85);
+	--info: oklch(0.8 0.08 240);
+	--info-foreground: oklch(0.17 0.03 240);
+	--info-soft: oklch(0.31 0.03 240);
+	--result-likely: var(--success);
+	--result-likely-foreground: var(--success-foreground);
+	--result-likely-soft: var(--success-soft);
+	--result-possible: var(--info);
+	--result-possible-foreground: var(--info-foreground);
+	--result-possible-soft: var(--info-soft);
+	--result-review: var(--warning);
+	--result-review-foreground: var(--warning-foreground);
+	--result-review-soft: var(--warning-soft);
+	--border: oklch(1 0 0 / 11%);
 	--input: oklch(1 0 0 / 15%);
 	--ring: oklch(0.556 0 0);
 	--sidebar: oklch(0.205 0 0);
@@ -87,6 +125,24 @@
 	--color-accent-foreground: var(--accent-foreground);
 	--color-destructive: var(--destructive);
 	--color-destructive-foreground: var(--destructive-foreground);
+	--color-success: var(--success);
+	--color-success-foreground: var(--success-foreground);
+	--color-success-soft: var(--success-soft);
+	--color-warning: var(--warning);
+	--color-warning-foreground: var(--warning-foreground);
+	--color-warning-soft: var(--warning-soft);
+	--color-info: var(--info);
+	--color-info-foreground: var(--info-foreground);
+	--color-info-soft: var(--info-soft);
+	--color-result-likely: var(--result-likely);
+	--color-result-likely-foreground: var(--result-likely-foreground);
+	--color-result-likely-soft: var(--result-likely-soft);
+	--color-result-possible: var(--result-possible);
+	--color-result-possible-foreground: var(--result-possible-foreground);
+	--color-result-possible-soft: var(--result-possible-soft);
+	--color-result-review: var(--result-review);
+	--color-result-review-foreground: var(--result-review-foreground);
+	--color-result-review-soft: var(--result-review-soft);
 	--color-border: var(--border);
 	--color-input: var(--input);
 	--color-ring: var(--ring);
@@ -103,6 +159,10 @@
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
+	}
+
+	::selection {
+		@apply bg-primary text-primary-foreground;
 	}
 
 	html {
@@ -133,23 +193,48 @@
 	h1 {
 		margin: 0;
 		font-size: clamp(1.875rem, 4vw, 2.6rem);
-		line-height: 1.1;
+		line-height: 1.05;
+		letter-spacing: -0.025em;
 	}
 
 	h2 {
 		margin: 0;
-		font-size: 1.25rem;
+		font-size: clamp(1.2rem, 2vw, 1.5rem);
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+	}
+
+	h3 {
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1.35;
+		font-weight: 600;
 	}
 
 	p {
 		margin: 0;
+		line-height: 1.65;
+	}
+
+	ul {
+		margin: 0;
+		list-style: disc;
+		padding-inline-start: 1.25rem;
+	}
+	ol {
+		margin: 0;
+		list-style: decimal;
+		padding-inline-start: 1.25rem;
+	}
+
+	li {
 		line-height: 1.6;
 	}
 }
 
 @layer components {
 	.app-shell {
-		@apply min-h-screen bg-background text-foreground;
+		@apply min-h-screen bg-background text-foreground antialiased;
 	}
 
 	.site-header {
@@ -162,23 +247,108 @@
 	}
 
 	.brand {
-		@apply inline-block py-4 font-bold no-underline;
+		@apply inline-flex items-center gap-3 py-4 text-base font-semibold tracking-tight no-underline;
 	}
 
 	.language-list {
-		@apply flex flex-wrap gap-3 list-none p-0 m-0;
+		@apply m-0 flex flex-wrap gap-2 list-none p-0;
+	}
+
+	.language-link {
+		@apply text-muted-foreground hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex min-h-10 items-center rounded-full border border-transparent px-3 text-sm font-medium no-underline transition-colors focus-visible:ring-3;
+	}
+
+	.language-link[aria-current="true"] {
+		@apply border-border bg-accent text-accent-foreground shadow-xs;
 	}
 
 	.app-card {
-		@apply bg-card text-card-foreground border-border rounded-xl border p-6 shadow-sm;
+		@apply bg-card text-card-foreground border-border rounded-2xl border p-6 shadow-sm md:p-8;
+	}
+
+	.panel {
+		@apply bg-card text-card-foreground border-border rounded-2xl border p-5 shadow-sm md:p-6;
+	}
+
+	.panel-subtle {
+		@apply bg-muted/60 text-foreground rounded-2xl border border-transparent p-5 md:p-6;
+	}
+
+	.section-block {
+		@apply grid gap-3;
+	}
+
+	.prose-block {
+		@apply grid gap-3;
+	}
+
+	.page-title {
+		@apply max-w-[24ch] text-balance text-[clamp(2rem,4vw,3rem)] font-semibold tracking-tight;
+	}
+
+	.section-title {
+		@apply text-balance text-lg font-semibold tracking-tight md:text-xl;
+	}
+
+	.supporting-text {
+		@apply text-muted-foreground text-sm leading-6 md:text-[0.95rem];
+	}
+
+	.meta-text {
+		@apply text-muted-foreground text-sm leading-6;
+	}
+
+	.lead-text {
+		@apply max-w-[65ch] text-base leading-7 md:text-lg;
+	}
+
+	.list-section {
+		@apply grid gap-3 rounded-2xl border border-transparent bg-muted/45 p-4 md:p-5;
+	}
+
+	.status-panel {
+		@apply grid gap-3 rounded-2xl border p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-6 md:p-6;
+	}
+
+	.status-panel[data-tone="positive"] {
+		background: color-mix(in oklab, var(--color-result-likely-soft) 82%, white 18%);
+		border-color: color-mix(in oklab, var(--color-result-likely) 24%, var(--color-border));
+	}
+
+	.status-panel[data-tone="informational"] {
+		background: color-mix(in oklab, var(--color-result-possible-soft) 82%, white 18%);
+		border-color: color-mix(in oklab, var(--color-result-possible) 24%, var(--color-border));
+	}
+
+	.status-panel[data-tone="caution"] {
+		background: color-mix(in oklab, var(--color-result-review-soft) 82%, white 18%);
+		border-color: color-mix(in oklab, var(--color-result-review) 24%, var(--color-border));
+	}
+
+	.cta-panel {
+		@apply grid gap-4 rounded-2xl border p-5 md:p-6;
+		background: linear-gradient(
+			180deg,
+			color-mix(in oklab, var(--color-primary) 8%, var(--color-card)) 0%,
+			var(--color-card) 100%
+		);
+		border-color: color-mix(in oklab, var(--color-primary) 16%, var(--color-border));
 	}
 
 	.form-field {
 		@apply grid gap-2;
 	}
 
+	.form-label {
+		@apply text-sm font-semibold tracking-tight;
+	}
+
+	.form-description {
+		@apply text-muted-foreground max-w-[65ch] text-sm leading-6;
+	}
+
 	.question-group {
-		@apply grid gap-3 border-0 p-0 m-0;
+		@apply m-0 grid gap-4 border-0 p-0;
 	}
 
 	.question-legend {
@@ -193,29 +363,121 @@
 	}
 
 	.app-option-row {
-		@apply border-border bg-card text-card-foreground flex items-start gap-3 rounded-xl border p-4;
+		@apply relative block rounded-2xl;
 	}
 
-	.app-option-row > input {
-		margin-block-start: 0.3rem;
+	.app-option-control {
+		@apply sr-only;
+	}
+
+	.app-option-label {
+		@apply border-border bg-card text-card-foreground hover:border-primary/35 hover:bg-accent/35 peer-focus-visible:border-ring peer-focus-visible:ring-ring/50 peer-checked:border-primary peer-checked:bg-primary/5 peer-aria-invalid:border-destructive peer-aria-invalid:ring-destructive/20 relative flex min-h-14 w-full cursor-pointer items-start gap-3 rounded-2xl border p-4 shadow-xs transition-[border-color,background-color,box-shadow] peer-focus-visible:ring-3;
+	}
+
+	.app-option-indicator {
+		@apply border-border bg-background text-transparent mt-0.5 flex size-5 shrink-0 items-center justify-center border shadow-xs transition-colors;
+	}
+
+	.app-option-indicator[data-type="radio"] {
+		@apply rounded-full;
+	}
+
+	.app-option-indicator[data-type="checkbox"] {
+		@apply rounded-md;
+	}
+
+	.peer:checked + .app-option-label .app-option-indicator {
+		@apply border-primary bg-primary text-primary-foreground;
+	}
+
+	.app-option-copy {
+		@apply flex min-w-0 flex-1 flex-col gap-1;
+	}
+
+	.app-option-title {
+		@apply text-sm font-medium leading-6;
+	}
+
+	.inline-subsection {
+		@apply rounded-2xl border border-dashed border-border/80 bg-muted/45 p-4 md:p-5;
 	}
 
 	.app-input {
-		@apply border-input bg-background text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 min-h-12 w-full rounded-xl border px-4 py-3 shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-3;
+		@apply border-input bg-background text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 aria-invalid:border-destructive min-h-12 w-full rounded-2xl border px-4 py-3 shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-3 aria-invalid:ring-3;
+	}
+
+	.summary-grid {
+		@apply grid gap-4 md:grid-cols-2;
+	}
+
+	.summary-stack {
+		@apply grid gap-4 md:w-[20rem] lg:w-[22rem];
+	}
+
+	.summary-item {
+		@apply grid gap-1 rounded-2xl border border-border/70 bg-background/75 p-4;
+	}
+
+	.summary-label {
+		@apply text-muted-foreground text-xs font-semibold tracking-[0.04em] uppercase;
+	}
+
+	.summary-value {
+		@apply text-sm font-medium leading-6;
+	}
+
+	.result-grid {
+		@apply grid gap-5;
+	}
+
+	.result-pill[data-state="likely_in_scope"] {
+		background: var(--color-result-likely-soft);
+		color: var(--color-result-likely-foreground);
+		border-color: color-mix(in oklab, var(--color-result-likely) 30%, transparent);
+	}
+
+	.result-pill[data-state="possible_but_needs_more_evidence"],
+	.result-pill[data-state="not_enough_information_yet"] {
+		background: var(--color-result-possible-soft);
+		color: var(--color-result-possible-foreground);
+		border-color: color-mix(in oklab, var(--color-result-possible) 30%, transparent);
+	}
+
+	.result-pill[data-state="needs_specialist_review"],
+	.result-pill[data-state="another_route_may_fit_better"] {
+		background: var(--color-result-review-soft);
+		color: var(--color-result-review-foreground);
+		border-color: color-mix(in oklab, var(--color-result-review) 30%, transparent);
 	}
 
 	.result-pill {
-		@apply bg-secondary text-secondary-foreground inline-flex items-center rounded-full px-3 py-2 text-sm font-semibold;
+		@apply inline-flex items-center rounded-full border px-3 py-1.5 text-sm font-semibold shadow-xs;
 	}
 
 	.error-summary {
-		@apply bg-destructive/10 rounded-xl border p-4;
+		@apply bg-destructive/10 rounded-2xl border p-4;
 		border-color: var(--color-destructive);
 		border-inline-start-width: 6px;
 	}
 
+	.error-summary-title {
+		@apply text-base font-semibold;
+	}
+
 	.error-text {
-		@apply text-destructive;
+		@apply text-destructive text-sm font-medium;
+	}
+
+	.page-actions {
+		@apply flex flex-wrap items-center gap-3 pt-2;
+	}
+
+	.language-nav {
+		@apply grid gap-1 justify-items-start md:justify-items-end;
+	}
+
+	.language-nav-label {
+		@apply text-muted-foreground text-xs font-semibold tracking-[0.04em] uppercase;
 	}
 }
 
@@ -225,11 +487,11 @@
 	}
 
 	.eyebrow {
-		@apply text-muted-foreground m-0 text-sm font-semibold;
+		@apply text-muted-foreground m-0 text-sm font-semibold tracking-[0.02em];
 	}
 
 	.hint {
-		@apply text-muted-foreground;
+		@apply text-muted-foreground text-sm leading-6;
 	}
 
 	.actions {
@@ -237,16 +499,24 @@
 	}
 
 	.check-list {
-		@apply grid gap-4;
+		@apply grid gap-3;
 	}
 
 	.check-row {
-		@apply border-border grid gap-2 border-b pb-4;
+		@apply border-border grid gap-3 rounded-2xl border p-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-start;
 	}
 
 	.sr-only {
 		@apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
 		clip: rect(0, 0, 0, 0);
+	}
+
+	.text-balance {
+		text-wrap: balance;
+	}
+
+	.text-pretty {
+		text-wrap: pretty;
 	}
 }
 

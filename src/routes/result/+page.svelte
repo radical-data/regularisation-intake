@@ -1,116 +1,179 @@
 <script lang="ts">
+import ExternalLinkIcon from '@lucide/svelte/icons/external-link'
+import FileDownIcon from '@lucide/svelte/icons/file-down'
+import ListChecksIcon from '@lucide/svelte/icons/list-checks'
+import { Badge } from '$lib/components/ui/badge'
 import { Button } from '$lib/components/ui/button'
 import { getTranslator } from '$lib/content'
 
 let { data } = $props()
 
 const tt = $derived(getTranslator(data.locale ?? 'es'))
+
+const badgeVariant = $derived.by(() => {
+	switch (data.result.resultState) {
+		case 'likely_in_scope':
+			return 'success'
+		case 'possible_but_needs_more_evidence':
+		case 'not_enough_information_yet':
+			return 'info'
+		default:
+			return 'warning'
+	}
+})
+
+const heroTone = $derived.by(() => {
+	switch (data.result.resultState) {
+		case 'likely_in_scope':
+			return 'positive'
+		case 'possible_but_needs_more_evidence':
+		case 'not_enough_information_yet':
+			return 'informational'
+		default:
+			return 'caution'
+	}
+})
 </script>
 
 <section class="stack">
 	<p class="eyebrow">{tt('pages.result.eyebrow')}</p>
 
-	<div class="app-card stack">
-		<span class="result-pill">{tt(`result.title.${data.result.resultState}`)}</span>
-
-		<h1>{tt('pages.result.eligibility_title')}</h1>
-		<p>{tt(data.result.summary.eligibilityKey)}</p>
+	<div class="result-grid">
+		<section class="status-panel" data-tone={heroTone}>
+			<div class="section-block">
+				<Badge class="result-pill" data-state={data.result.resultState} variant={badgeVariant}>
+					{tt(`result.title.${data.result.resultState}`)}
+				</Badge>
+				<div class="section-block">
+					<h1 class="page-title">{tt('pages.result.eligibility_title')}</h1>
+					<p class="lead-text">{tt(data.result.summary.eligibilityKey)}</p>
+				</div>
+			</div>
+			<div class="summary-stack">
+				<div class="summary-item">
+					<p class="summary-label">{tt('pages.result.next_step_title')}</p>
+					<p class="summary-value">{tt(data.result.summary.nextStepKey)}</p>
+				</div>
+				<div class="summary-item">
+					<p class="summary-label">{tt('pages.result.handover_title')}</p>
+					<p class="summary-value">{tt('pages.result.handover.body')}</p>
+				</div>
+			</div>
+		</section>
 
 		{#if data.result.reasonKey}
-			<div class="stack">
-				<h2>{tt('pages.result.why_title')}</h2>
-				<p>{tt(data.result.reasonKey)}</p>
-			</div>
+			<section class="panel section-block">
+				<h2 class="section-title">{tt('pages.result.why_title')}</h2>
+				<p class="lead-text">{tt(data.result.reasonKey)}</p>
+			</section>
 		{/if}
 
-		<div class="stack">
-			<h2>{tt('pages.result.next_step_title')}</h2>
-			<p>{tt(data.result.summary.nextStepKey)}</p>
+		<section class="cta-panel">
+			<div class="section-block">
+				<h2 class="section-title">{tt('pages.result.next_step_title')}</h2>
+				<p class="lead-text">{tt(data.result.summary.nextStepKey)}</p>
+			</div>
 			{#if data.result.recommendedRoute === 'official_portal'}
 				<div class="actions">
-					<Button href={data.officialPortalUrl} target="_blank" rel="noreferrer"
-						>{tt('pages.result.action.open_official_portal')}</Button
-					>
+					<Button href={data.officialPortalUrl} target="_blank" rel="noreferrer">
+						{tt('pages.result.action.open_official_portal')}
+						<ExternalLinkIcon class="size-4" />
+					</Button>
 				</div>
 			{:else}
 				<p class="hint">{tt('pages.result.next_step.collaborating_organisation_hint')}</p>
 				<div class="actions">
-					<Button href={data.collaboratorsPdfUrl} target="_blank" rel="noreferrer"
-						>{tt('pages.result.action.open_collaborators_pdf')}</Button
-					>
+					<Button href={data.collaboratorsPdfUrl} target="_blank" rel="noreferrer">
+						{tt('pages.result.action.open_collaborators_pdf')}
+						<ExternalLinkIcon class="size-4" />
+					</Button>
 				</div>
 			{/if}
-		</div>
+		</section>
 
-		<div class="stack">
-			<h2>{tt('pages.result.checklist_title')}</h2>
+		<section class="panel section-block">
+			<div class="section-block">
+				<h2 class="section-title inline-flex items-center gap-2">
+					<ListChecksIcon class="size-5" aria-hidden="true" />
+					{tt('pages.result.checklist_title')}
+				</h2>
+				<p class="supporting-text">{tt(data.result.explanationKey)}</p>
+			</div>
+			<div class="result-grid">
+				{#if data.result.checklist.alreadyHave.length > 0}
+					<div class="list-section">
+						<h3>{tt('pages.result.checklist.already_have')}</h3>
+						<ul>
+							{#each data.result.checklist.alreadyHave as itemKey}
+								<li>{tt(itemKey)}</li>
+							{/each}
+						</ul>
+					</div>
+				{/if}
 
-			{#if data.result.checklist.alreadyHave.length > 0}
-				<div class="stack">
-					<h3>{tt('pages.result.checklist.already_have')}</h3>
-					<ul>
-						{#each data.result.checklist.alreadyHave as itemKey}
-							<li>{tt(itemKey)}</li>
-						{/each}
-					</ul>
-				</div>
-			{/if}
+				{#if data.result.checklist.stillNeed.length > 0}
+					<div class="list-section">
+						<h3>{tt('pages.result.checklist.still_need')}</h3>
+						<ul>
+							{#each data.result.checklist.stillNeed as itemKey}
+								<li>{tt(itemKey)}</li>
+							{/each}
+						</ul>
+					</div>
+				{/if}
 
-			{#if data.result.checklist.stillNeed.length > 0}
-				<div class="stack">
-					<h3>{tt('pages.result.checklist.still_need')}</h3>
-					<ul>
-						{#each data.result.checklist.stillNeed as itemKey}
-							<li>{tt(itemKey)}</li>
-						{/each}
-					</ul>
-				</div>
-			{/if}
+				{#if data.result.checklist.discussWithSupport.length > 0}
+					<div class="list-section">
+						<h3>{tt('pages.result.checklist.discuss_with_support')}</h3>
+						<ul>
+							{#each data.result.checklist.discussWithSupport as itemKey}
+								<li>{tt(itemKey)}</li>
+							{/each}
+						</ul>
+					</div>
+				{/if}
 
-			{#if data.result.checklist.discussWithSupport.length > 0}
-				<div class="stack">
-					<h3>{tt('pages.result.checklist.discuss_with_support')}</h3>
-					<ul>
-						{#each data.result.checklist.discussWithSupport as itemKey}
-							<li>{tt(itemKey)}</li>
-						{/each}
-					</ul>
-				</div>
-			{/if}
-
-			{#if data.result.checklist.unresolved.length > 0}
-				<div class="stack">
-					<h3>{tt('pages.result.checklist.unresolved')}</h3>
-					<ul>
-						{#each data.result.checklist.unresolved as itemKey}
-							<li>{tt(itemKey)}</li>
-						{/each}
-					</ul>
-				</div>
-			{/if}
-		</div>
+				{#if data.result.checklist.unresolved.length > 0}
+					<div class="list-section">
+						<h3>{tt('pages.result.checklist.unresolved')}</h3>
+						<ul>
+							{#each data.result.checklist.unresolved as itemKey}
+								<li>{tt(itemKey)}</li>
+							{/each}
+						</ul>
+					</div>
+				{/if}
+			</div>
+		</section>
 
 		{#if data.result.recommendedRoute === 'official_portal' && data.result.showHowToApply}
-			<div class="stack">
-				<h2>{tt('pages.result.how_to_apply_title')}</h2>
-				<p>{tt('pages.result.how_to_apply.body')}</p>
+			<section class="panel-subtle section-block">
+				<h2 class="section-title">{tt('pages.result.how_to_apply_title')}</h2>
+				<p class="lead-text">{tt('pages.result.how_to_apply.body')}</p>
 				<p class="hint">{tt('pages.result.how_to_apply.hint')}</p>
-			</div>
+			</section>
 		{/if}
 
-		<div class="stack">
-			<h2>{tt('pages.result.handover_title')}</h2>
-			<p>{tt('pages.result.handover.body')}</p>
+		<section class="panel section-block">
+			<h2 class="section-title">{tt('pages.result.handover_title')}</h2>
+			<p class="lead-text">{tt('pages.result.handover.body')}</p>
 			<div class="actions">
-				<Button href={data.handoverHref}>{tt('pages.result.action.print_handover')}</Button>
+				<Button href={data.handoverHref} variant="secondary">
+					{tt('pages.result.action.print_handover')}
+					<FileDownIcon class="size-4" />
+				</Button>
 			</div>
-		</div>
+		</section>
 
-		<div class="actions">
-			<Button href="/check-answers" variant="outline"
-				>{tt('pages.result.action.back_to_answers')}</Button
-			>
-			<Button href="/start?new=1" variant="outline">{tt('pages.result.action.start_again')}</Button>
-		</div>
+		<section class="panel-subtle">
+			<div class="actions">
+				<Button href="/check-answers" variant="outline"
+					>{tt('pages.result.action.back_to_answers')}</Button
+				>
+				<Button href="/start?new=1" variant="outline"
+					>{tt('pages.result.action.start_again')}</Button
+				>
+			</div>
+		</section>
 	</div>
 </section>

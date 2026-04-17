@@ -1,4 +1,5 @@
 <script lang="ts">
+import CheckIcon from '@lucide/svelte/icons/check'
 import { Label } from '$lib/components/ui/label'
 
 export interface ChoiceOption {
@@ -52,7 +53,7 @@ const describedBy = $derived(
 		<h1>{question}</h1>
 	</legend>
 	{#if description && description !== question}
-		<p id={`${name}-description`}>{description}</p>
+		<p class="lead-text" id={`${name}-description`}>{description}</p>
 	{/if}
 	{#if hint}
 		<p class="hint" id={hintId}>{hint}</p>
@@ -63,6 +64,7 @@ const describedBy = $derived(
 	{#each options as option}
 		<div class="app-option-row">
 			<input
+				class="app-option-control peer"
 				id={optionId(option.value)}
 				{type}
 				{name}
@@ -71,7 +73,16 @@ const describedBy = $derived(
 				aria-describedby={describedBy || undefined}
 				checked={isChecked(option.value)}
 			>
-			<Label class="leading-6 cursor-pointer" for={optionId(option.value)}>{option.label}</Label>
+			<Label class="app-option-label" for={optionId(option.value)}>
+				<span class="app-option-indicator" data-type={type} aria-hidden="true">
+					{#if type === 'checkbox'}
+						<CheckIcon class="size-3.5" />
+					{:else}
+						<span class="size-2 rounded-full bg-current"></span>
+					{/if}
+				</span>
+				<span class="app-option-copy"> <span class="app-option-title">{option.label}</span> </span>
+			</Label>
 		</div>
 	{/each}
 </fieldset>

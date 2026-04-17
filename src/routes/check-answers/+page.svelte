@@ -20,17 +20,17 @@ const tt = $derived(getTranslator(data.locale ?? 'es'))
 	<p class="eyebrow">{tt('pages.check_answers.eyebrow')}</p>
 
 	<div class="app-card stack">
-		<h1>{tt('pages.check_answers.title')}</h1>
+		<h1 class="page-title">{tt('pages.check_answers.title')}</h1>
 		<p class="hint">{tt('pages.check_answers.hint')}</p>
 
 		<div class="check-list">
 			{#each data.answers as answer}
 				<section class="check-row" aria-label={answer.label}>
 					<div class="stack">
-						<h2>{answer.label}</h2>
+						<h2 class="section-title text-base">{answer.label}</h2>
 						<p>{answer.value}</p>
 					</div>
-					<Button href={answer.changeHref} variant="outline"
+					<Button href={answer.changeHref} variant="outline" size="sm"
 						>{tt('pages.check_answers.change')}</Button
 					>
 				</section>
