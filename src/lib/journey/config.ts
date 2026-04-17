@@ -1,13 +1,21 @@
 import type { MessageKey } from '$lib/content'
+import { provinces } from '$lib/generated/provinces'
 import type { JourneyAnswers } from '$lib/journey/types'
 import { runTriage } from '$lib/triage/engine'
 
-export interface JourneyOption {
-	value: string
-	labelKey: MessageKey
-}
-
 export type FieldAdapterName = 'single-choice' | 'multi-choice' | 'select'
+
+export type JourneyOption =
+	| {
+			value: string
+			labelKey: MessageKey
+			label?: never
+	  }
+	| {
+			value: string
+			label: string
+			labelKey?: never
+	  }
 
 export type StepResolver = string | ((answers: JourneyAnswers) => string)
 
@@ -38,6 +46,11 @@ export type JourneyStepDefinition = ChoiceStepDefinition
 
 const shouldAskProvince = (answers: JourneyAnswers) =>
 	runTriage(answers).recommendedRoute === 'collaborating_organisation'
+
+const provinceOptions: JourneyOption[] = provinces.map((province) => ({
+	value: province.code,
+	label: province.name
+}))
 
 const steps: JourneyStepDefinition[] = [
 	{
@@ -494,18 +507,7 @@ const steps: JourneyStepDefinition[] = [
 		guard: shouldAskProvince,
 		redirectIfGuardFails: '/check-answers',
 		next: '/check-answers',
-		options: [
-			{ value: 'madrid', labelKey: 'steps.province.options.madrid' },
-			{ value: 'barcelona', labelKey: 'steps.province.options.barcelona' },
-			{ value: 'valencia', labelKey: 'steps.province.options.valencia' },
-			{ value: 'sevilla', labelKey: 'steps.province.options.sevilla' },
-			{ value: 'malaga', labelKey: 'steps.province.options.malaga' },
-			{ value: 'alicante', labelKey: 'steps.province.options.alicante' },
-			{ value: 'bizkaia', labelKey: 'steps.province.options.bizkaia' },
-			{ value: 'zaragoza', labelKey: 'steps.province.options.zaragoza' },
-			{ value: 'murcia', labelKey: 'steps.province.options.murcia' },
-			{ value: 'other', labelKey: 'steps.province.options.other' }
-		]
+		options: provinceOptions
 	}
 ]
 

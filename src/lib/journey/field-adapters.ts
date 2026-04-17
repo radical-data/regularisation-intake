@@ -27,6 +27,7 @@ const message = (key: MessageKey, values?: MessageReference['values']): MessageR
 	key,
 	values
 })
+const raw = (value: string): FormattedReference => ({ type: 'raw', value })
 
 const notAnswered = (): FormattedReference[] => [message('common.not_answered')]
 
@@ -50,7 +51,8 @@ const singleChoiceAdapter: FieldAdapter = {
 		const value = answers[step.field]
 		if (!value || !('options' in step)) return notAnswered()
 		const option = step.options.find((entry) => entry.value === value)
-		return option ? [message(option.labelKey)] : notAnswered()
+		if (!option) return notAnswered()
+		return option.labelKey ? [message(option.labelKey)] : [raw(option.label)]
 	}
 }
 
@@ -78,10 +80,12 @@ const multiChoiceAdapter: FieldAdapter = {
 	format: (answers, step) => {
 		const values = answers[step.field]
 		if (!Array.isArray(values) || !('options' in step) || values.length === 0) return notAnswered()
-		const labels = values
-			.map((value) => step.options.find((option) => option.value === value)?.labelKey)
-			.filter((value): value is MessageKey => Boolean(value))
-		return labels.length > 0 ? labels.map((key) => message(key)) : notAnswered()
+		const labels = values.flatMap((value) => {
+			const option = step.options.find((entry) => entry.value === value)
+			if (!option) return []
+			return option.labelKey ? [message(option.labelKey)] : [raw(option.label)]
+		})
+		return labels.length > 0 ? labels : notAnswered()
 	}
 }
 

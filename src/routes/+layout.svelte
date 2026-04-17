@@ -1,10 +1,10 @@
 <script lang="ts">
 import LanguagesIcon from '@lucide/svelte/icons/languages'
 import '../app.css'
-import { page } from '$app/state'
 import { browser } from '$app/environment'
 import { invalidateAll } from '$app/navigation'
 import { resolve } from '$app/paths'
+import { page } from '$app/state'
 import { getTranslator } from '$lib/content'
 
 let { children, data } = $props()

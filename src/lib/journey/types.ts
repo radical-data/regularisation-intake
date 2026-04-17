@@ -1,3 +1,5 @@
+import type { ProvinceValue } from '$lib/generated/provinces'
+
 export const LANGUAGE_VALUES = ['es', 'en', 'ar', 'fr'] as const
 export type LanguageValue = (typeof LANGUAGE_VALUES)[number]
 
@@ -78,20 +80,6 @@ export const SPECIALIST_FLAG_VALUES = [
 	'none'
 ] as const
 export type SpecialistFlagValue = (typeof SPECIALIST_FLAG_VALUES)[number]
-
-export const PROVINCE_VALUES = [
-	'madrid',
-	'barcelona',
-	'valencia',
-	'sevilla',
-	'malaga',
-	'alicante',
-	'bizkaia',
-	'zaragoza',
-	'murcia',
-	'other'
-] as const
-export type ProvinceValue = (typeof PROVINCE_VALUES)[number]
 
 export const SUPPORT_NEED_VALUES = [
 	'another_language',

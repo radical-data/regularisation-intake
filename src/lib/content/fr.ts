@@ -14,7 +14,8 @@ export const fr = {
 	'chrome.meta_description':
 		'Primer Paso est un questionnaire d’accueil pour la procédure extraordinaire de régularisation en Espagne en 2026. Hébergé sur primerpaso.org.',
 	'chrome.brand': 'Primer Paso',
-	'chrome.tagline': 'Orientation indépendante pour la procédure de régularisation de l’Espagne en 2026',
+	'chrome.tagline':
+		'Orientation indépendante pour la procédure de régularisation de l’Espagne en 2026',
 	'chrome.primary_navigation': 'Navigation principale',
 	'chrome.nav.home': 'Accueil',
 	'chrome.nav.start': 'Vérifier la prochaine étape',

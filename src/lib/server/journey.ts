@@ -1,4 +1,5 @@
 import type { Cookies } from '@sveltejs/kit'
+import { PROVINCE_VALUES, type ProvinceValue, provinceLabelByCode } from '$lib/generated/provinces'
 
 import type {
 	CompletionModeValue,
@@ -10,7 +11,6 @@ import type {
 	JourneyAnswers,
 	JourneyState,
 	LanguageValue,
-	ProvinceValue,
 	SpecialistFlagValue,
 	SupportNeedValue,
 	WorkSituationValue
@@ -24,7 +24,6 @@ import {
 	FIVE_MONTH_STAY_VALUES,
 	IDENTITY_DOCUMENT_VALUES,
 	LANGUAGE_VALUES,
-	PROVINCE_VALUES,
 	SPECIALIST_FLAG_VALUES,
 	SUPPORT_NEED_VALUES,
 	WORK_SITUATION_VALUES,
@@ -294,18 +293,8 @@ export const formatSpecialistFlagsAnswer = (values?: SpecialistFlagValue[]) =>
 		)
 	)
 
-export const formatProvinceAnswer = labelMap<ProvinceValue>({
-	madrid: 'Madrid',
-	barcelona: 'Barcelona',
-	valencia: 'Valencia',
-	sevilla: 'Sevilla',
-	malaga: 'Málaga',
-	alicante: 'Alicante',
-	bizkaia: 'Bizkaia',
-	zaragoza: 'Zaragoza',
-	murcia: 'Murcia',
-	other: 'Another province'
-})
+export const formatProvinceAnswer = (value?: ProvinceValue) =>
+	(value ? provinceLabelByCode[value] : undefined) ?? 'Not answered'
 
 export const formatSupportNeedsAnswer = (values?: SupportNeedValue[]) =>
 	formatList(

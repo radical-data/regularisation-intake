@@ -63,7 +63,10 @@ export const load: PageServerLoad = ({ cookies, params, url }) => {
 	const adapter = fieldAdapters[step.adapter]
 	const options: Array<{ value: string; label: string }> =
 		'options' in step
-			? step.options.map((option) => ({ value: option.value, label: tt(option.labelKey) }))
+			? step.options.map((option) => ({
+					value: option.value,
+					label: option.labelKey ? tt(option.labelKey) : option.label
+				}))
 			: []
 
 	return {
