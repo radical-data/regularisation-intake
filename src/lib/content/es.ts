@@ -42,6 +42,10 @@ export const es = {
 		'Usa este resumen para guardar una copia de tus respuestas o para compartirla con una persona de apoyo de confianza o una entidad colaboradora.',
 	'pages.handover.reference': 'Número de referencia: {sessionId}',
 	'pages.handover.generated_at': 'Generado: {generatedAt}',
+	'pages.handover.generated_by': 'Generado por Primer Paso (primerpaso.org)',
+	'pages.handover.links_title': 'Enlaces útiles',
+	'pages.handover.link.official_portal': 'Portal oficial de regularización',
+	'pages.handover.link.collaborators_pdf': 'Lista oficial de entidades colaboradoras',
 	'pages.handover.next_step_title': 'Siguiente paso recomendado',
 	'pages.handover.checklist_title': 'Qué conviene preparar',
 	'pages.handover.answers_title': 'Tus respuestas',
@@ -95,7 +99,7 @@ export const es = {
 	'pages.result.action.open_official_portal': 'Abrir el portal oficial de regularización',
 	'pages.result.action.open_collaborators_pdf': 'Abrir la lista oficial de entidades colaboradoras',
 	'pages.result.action.collaborators_pdf': 'Ver la lista oficial de entidades colaboradoras',
-	'pages.result.action.print_handover': 'Imprimir o guardar resumen de entrega',
+	'pages.result.action.print_handover': 'Descargar PDF del resumen',
 	'pages.result.action.download_handover_json': 'Descargar JSON del resumen',
 	'pages.result.action.back_to_answers': 'Volver a las respuestas',
 	'pages.result.action.start_again': 'Empezar de nuevo',
@@ -153,7 +157,8 @@ export const es = {
 	'steps.presence_before_cutoff.title': '¿Ya vivías en España antes del 1 de enero de 2026?',
 	'steps.presence_before_cutoff.hint':
 		'Responde según si ya vivías en España antes de la fecha límite',
-	'steps.presence_before_cutoff.check_answers_label': 'Vivir en España antes del 1 de enero de 2026',
+	'steps.presence_before_cutoff.check_answers_label':
+		'Vivir en España antes del 1 de enero de 2026',
 	'steps.presence_before_cutoff.error':
 		'Elige si ya vivías en España antes del 1 de enero de 2026.',
 	'steps.common.options.yes': 'Sí',
@@ -179,8 +184,10 @@ export const es = {
 	'steps.asylum_before_cutoff.error': 'Elige si esa solicitud fue antes del 1 de enero de 2026.',
 	'steps.five_month_stay.title':
 		'En los 5 meses antes de que pienses presentar la solicitud, ¿has permanecido en España todo el tiempo?',
-	'steps.five_month_stay.body': 'Responde sobre los 5 meses anteriores a la fecha en que esperas presentar.',
-	'steps.five_month_stay.check_answers_label': 'Permanecí en España durante todo el periodo de 5 meses',
+	'steps.five_month_stay.body':
+		'Responde sobre los 5 meses anteriores a la fecha en que esperas presentar.',
+	'steps.five_month_stay.check_answers_label':
+		'Permanecí en España durante todo el periodo de 5 meses',
 	'steps.five_month_stay.error': 'Elige la respuesta que mejor encaje con tu situación.',
 	'steps.five_month_stay.options.left_spain': 'No, en algún momento salí de España',
 	'steps.asylum_documents.title': '¿Tienes algún documento sobre tu caso de asilo o protección?',
@@ -195,7 +202,8 @@ export const es = {
 	'steps.work_situation.options.job_offer': 'Tengo una oferta de trabajo',
 	'steps.work_situation.options.want_to_work_for_myself': 'Quiero trabajar por cuenta propia',
 	'steps.work_situation.options.none': 'Ninguna de estas',
-	'steps.family_situation.title': '¿Alguna de estas opciones describe tu situación familiar en España?',
+	'steps.family_situation.title':
+		'¿Alguna de estas opciones describe tu situación familiar en España?',
 	'steps.family_situation.check_answers_label': 'Situación familiar en España',
 	'steps.family_situation.error': 'Elige al menos una opción.',
 	'steps.family_situation.options.child_under_18': 'Vivo con mi hijo o hija menor de 18 años',
@@ -319,8 +327,7 @@ export const es = {
 	'answers.residence_start.2025_month_unknown': '2025 — mes no seguro',
 	'answers.residence_start.2025_month': '{month} de 2025',
 	'answers.contact.with_value': '{method}: {value}',
-	'result.reason.after_cutoff':
-		'Dijiste que aún no vivías en España antes del 1 de enero de 2026.',
+	'result.reason.after_cutoff': 'Dijiste que aún no vivías en España antes del 1 de enero de 2026.',
 	'result.reason.specialist_review':
 		'Una o más de tus respuestas sugieren que sería más seguro recibir apoyo antes de solicitar.',
 	'result.reason.specialist_review_criminal_record':

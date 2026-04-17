@@ -40,6 +40,10 @@ export const ar = {
 		'استخدم هذا الملخص للاحتفاظ بنسخة من إجاباتك أو لمشاركته مع عامل دعم موثوق أو منظمة متعاونة.',
 	'pages.handover.reference': 'رقم المرجع: {sessionId}',
 	'pages.handover.generated_at': 'تاريخ الإنشاء: {generatedAt}',
+	'pages.handover.generated_by': 'تم إنشاؤه بواسطة Primer Paso (primerpaso.org)',
+	'pages.handover.links_title': 'روابط مفيدة',
+	'pages.handover.link.official_portal': 'البوابة الرسمية لتسوية الوضع',
+	'pages.handover.link.collaborators_pdf': 'القائمة الرسمية للجهات المتعاونة',
 	'pages.handover.next_step_title': 'الخطوة التالية الموصى بها',
 	'pages.handover.checklist_title': 'ما الذي ينبغي تجهيزه',
 	'pages.handover.answers_title': 'إجاباتك',
@@ -92,7 +96,7 @@ export const ar = {
 	'pages.result.action.open_official_portal': 'فتح بوابة التسوية الرسمية',
 	'pages.result.action.open_collaborators_pdf': 'فتح القائمة الرسمية للمنظمات المتعاونة',
 	'pages.result.action.collaborators_pdf': 'عرض القائمة الرسمية للمنظمات المتعاونة',
-	'pages.result.action.print_handover': 'طباعة أو حفظ ملخص التسليم',
+	'pages.result.action.print_handover': 'تنزيل ملف PDF للملخص',
 	'pages.result.action.download_handover_json': 'تنزيل ملف JSON للتسليم',
 	'pages.result.action.back_to_answers': 'العودة إلى الإجابات',
 	'pages.result.action.start_again': 'ابدأ من جديد',
@@ -150,8 +154,7 @@ export const ar = {
 	'steps.presence_before_cutoff.hint':
 		'أجب بناءً على ما إذا كنت تعيش بالفعل في إسبانيا قبل تاريخ الحد',
 	'steps.presence_before_cutoff.check_answers_label': 'العيش في إسبانيا قبل 1 يناير 2026',
-	'steps.presence_before_cutoff.error':
-		'اختر ما إذا كنت تعيش بالفعل في إسبانيا قبل 1 يناير 2026.',
+	'steps.presence_before_cutoff.error': 'اختر ما إذا كنت تعيش بالفعل في إسبانيا قبل 1 يناير 2026.',
 	'steps.common.options.yes': 'نعم',
 	'steps.common.options.no': 'لا',
 	'steps.common.options.not_sure': 'لست متأكداً',
@@ -305,8 +308,7 @@ export const ar = {
 	'answers.residence_start.2025_month_unknown': '2025 — الشهر غير معروف',
 	'answers.residence_start.2025_month': '{month} 2025',
 	'answers.contact.with_value': '{method}: {value}',
-	'result.reason.after_cutoff':
-		'ذكرت أنك لم تكن تعيش بعد في إسبانيا قبل 1 يناير 2026.',
+	'result.reason.after_cutoff': 'ذكرت أنك لم تكن تعيش بعد في إسبانيا قبل 1 يناير 2026.',
 	'result.reason.specialist_review':
 		'تشير واحدة أو أكثر من إجاباتك إلى أن الحصول على دعم قبل التقديم سيكون أكثر أماناً.',
 	'result.reason.specialist_review_criminal_record':

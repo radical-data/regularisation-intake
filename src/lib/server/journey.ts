@@ -4,26 +4,26 @@ import type {
 	CompletionModeValue,
 	EvidenceBeforeCutoffValue,
 	EvidenceRecentValue,
+	FamilySituationValue,
 	FiveMonthStayValue,
 	IdentityDocumentValue,
 	JourneyAnswers,
 	JourneyState,
 	LanguageValue,
-	WorkSituationValue,
-	FamilySituationValue,
 	ProvinceValue,
 	SpecialistFlagValue,
-	SupportNeedValue
+	SupportNeedValue,
+	WorkSituationValue
 } from '$lib/journey/types'
 
 import {
 	COMPLETION_MODE_VALUES,
 	EVIDENCE_BEFORE_CUTOFF_VALUES,
 	EVIDENCE_RECENT_VALUES,
+	FAMILY_SITUATION_VALUES,
 	FIVE_MONTH_STAY_VALUES,
 	IDENTITY_DOCUMENT_VALUES,
 	LANGUAGE_VALUES,
-	FAMILY_SITUATION_VALUES,
 	PROVINCE_VALUES,
 	SPECIALIST_FLAG_VALUES,
 	SUPPORT_NEED_VALUES,

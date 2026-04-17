@@ -107,7 +107,9 @@ const tt = $derived(getTranslator(data.locale ?? 'es'))
 		</div>
 
 		<div class="actions">
-			<Button href="/check-answers" variant="outline">{tt('pages.result.action.back_to_answers')}</Button>
+			<Button href="/check-answers" variant="outline"
+				>{tt('pages.result.action.back_to_answers')}</Button
+			>
 			<Button href="/start?new=1" variant="outline">{tt('pages.result.action.start_again')}</Button>
 		</div>
 	</div>

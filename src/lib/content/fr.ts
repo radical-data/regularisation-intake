@@ -44,6 +44,10 @@ export const fr = {
 		'Utilisez ce résumé pour garder une copie de vos réponses ou pour le partager avec une personne de confiance ou une organisation partenaire.',
 	'pages.handover.reference': 'Numéro de référence : {sessionId}',
 	'pages.handover.generated_at': 'Généré le : {generatedAt}',
+	'pages.handover.generated_by': 'Généré par Primer Paso (primerpaso.org)',
+	'pages.handover.links_title': 'Liens utiles',
+	'pages.handover.link.official_portal': 'Portail officiel de régularisation',
+	'pages.handover.link.collaborators_pdf': 'Liste officielle des organisations collaboratrices',
 	'pages.handover.next_step_title': 'Prochaine étape recommandée',
 	'pages.handover.checklist_title': 'Ce qu’il faut préparer',
 	'pages.handover.answers_title': 'Vos réponses',
@@ -99,7 +103,7 @@ export const fr = {
 	'pages.result.action.open_collaborators_pdf':
 		'Ouvrir la liste officielle des organisations partenaires',
 	'pages.result.action.collaborators_pdf': 'Voir la liste officielle des organisations partenaires',
-	'pages.result.action.print_handover': 'Imprimer ou enregistrer le résumé de transmission',
+	'pages.result.action.print_handover': 'Télécharger le PDF du résumé',
 	'pages.result.action.download_handover_json': 'Télécharger le JSON du résumé',
 	'pages.result.action.back_to_answers': 'Retour aux réponses',
 	'pages.result.action.start_again': 'Recommencer',
@@ -155,8 +159,7 @@ export const fr = {
 	'steps.completion_mode.options.self': 'Pour moi',
 	'steps.completion_mode.options.someone_else': 'Pour une autre personne, avec son autorisation',
 	'steps.completion_mode.options.support_worker': 'Je suis travailleur·euse social·e ou bénévole',
-	'steps.presence_before_cutoff.title':
-		'Viviez-vous déjà en Espagne avant le 1er janvier 2026 ?',
+	'steps.presence_before_cutoff.title': 'Viviez-vous déjà en Espagne avant le 1er janvier 2026 ?',
 	'steps.presence_before_cutoff.hint':
 		'Répondez en fonction du fait que vous viviez déjà en Espagne avant la date limite',
 	'steps.presence_before_cutoff.check_answers_label':
@@ -217,8 +220,7 @@ export const fr = {
 		'L’un de ces éléments décrit-il votre situation familiale en Espagne ?',
 	'steps.family_situation.check_answers_label': 'Situation familiale en Espagne',
 	'steps.family_situation.error': 'Choisissez au moins une option.',
-	'steps.family_situation.options.child_under_18':
-		'Je vis avec mon enfant de moins de 18 ans',
+	'steps.family_situation.options.child_under_18': 'Je vis avec mon enfant de moins de 18 ans',
 	'steps.family_situation.options.adult_child_support_needs':
 		'Je vis avec mon enfant adulte qui a besoin de beaucoup d’aide en raison d’un handicap ou de problèmes de santé',
 	'steps.family_situation.options.mother_or_father': 'Je vis avec ma mère ou mon père',

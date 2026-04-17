@@ -1,5 +1,9 @@
 import type { MessageKey } from '$lib/content'
-import type { EvidenceBeforeCutoffValue, EvidenceRecentValue, JourneyAnswers } from '$lib/journey/types'
+import type {
+	EvidenceBeforeCutoffValue,
+	EvidenceRecentValue,
+	JourneyAnswers
+} from '$lib/journey/types'
 
 import type { PreparationChecklist, ResultSummary, TriageResult } from './types'
 
