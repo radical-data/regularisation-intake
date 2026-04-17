@@ -250,6 +250,32 @@
 		@apply inline-flex items-center gap-3 py-4 text-base font-semibold tracking-tight no-underline;
 	}
 
+	.site-header-main {
+		@apply flex flex-wrap items-center gap-3;
+	}
+
+	.service-nav {
+		@apply flex flex-wrap items-center gap-1;
+	}
+	.service-nav-link {
+		@apply text-muted-foreground hover:text-foreground inline-flex min-h-10 items-center rounded-full px-3 text-sm font-medium no-underline transition-colors;
+	}
+	.service-nav-link[aria-current="page"] {
+		@apply bg-accent text-accent-foreground;
+	}
+
+	.task-grid {
+		@apply grid gap-4 md:grid-cols-2;
+	}
+
+	.task-card {
+		@apply h-full;
+	}
+
+	.directory-grid {
+		@apply grid gap-4;
+	}
+
 	.language-list {
 		@apply m-0 flex flex-wrap gap-2 list-none p-0;
 	}
@@ -478,6 +504,29 @@
 
 	.language-nav-label {
 		@apply text-muted-foreground text-xs font-semibold tracking-[0.04em] uppercase;
+	}
+	.language-nav-label.compact {
+		@apply mb-1;
+	}
+
+	.directory-toolbar {
+		@apply grid gap-3 rounded-2xl border border-border/70 bg-background/75 p-4;
+	}
+
+	.directory-toolbar-actions {
+		@apply flex flex-wrap items-center gap-3;
+	}
+
+	.directory-meta {
+		@apply flex flex-wrap items-center gap-2;
+	}
+
+	.directory-card {
+		@apply rounded-2xl;
+	}
+
+	.directory-card-list {
+		@apply grid gap-2;
 	}
 }
 
