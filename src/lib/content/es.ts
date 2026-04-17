@@ -66,8 +66,17 @@ export const es = {
 	'pages.organisations.action.visit_website': 'Visitar sitio web',
 	'pages.organisations.action.email': 'Enviar correo',
 	'pages.organisations.action.call': 'Llamar',
+	'pages.organisations.action.view_details': 'Ver detalles',
 	'pages.organisations.action.browse_all': 'Ver todas las organizaciones',
 	'pages.organisations.action.start_screener': 'Empezar el orientador',
+	'pages.organisations.detail.meta_has_phone': 'Teléfono disponible',
+	'pages.organisations.detail.meta_has_website': 'Sitio web disponible',
+	'pages.organisations.detail.lead':
+		'Revisa los canales de contacto y el horario antes de comunicarte con esta organización.',
+	'pages.organisations.detail.contact_title': 'Datos de contacto',
+	'pages.organisations.detail.opening_hours_title': 'Horario de atención',
+	'pages.organisations.detail.guidance_body':
+		'Usa esta ficha para elegir la forma de contacto más segura para tu situación.',
 	'pages.start.title': 'Revisa qué apoyo podrías necesitar para el proceso de regularización',
 	'pages.start.lead': 'Usa este cuestionario para entender cuál podría ser tu siguiente paso.',
 	'pages.start.not_official': 'Esta no es la solicitud oficial del gobierno.',

@@ -67,8 +67,17 @@ export const fr = {
 	'pages.organisations.action.visit_website': 'Visiter le site web',
 	'pages.organisations.action.email': 'E-mail',
 	'pages.organisations.action.call': 'Appeler',
+	'pages.organisations.action.view_details': 'Voir les détails',
 	'pages.organisations.action.browse_all': 'Parcourir toutes les organisations',
 	'pages.organisations.action.start_screener': 'Commencer le questionnaire',
+	'pages.organisations.detail.meta_has_phone': 'Téléphone disponible',
+	'pages.organisations.detail.meta_has_website': 'Site web disponible',
+	'pages.organisations.detail.lead':
+		'Consultez les moyens de contact et les horaires avant de joindre cette organisation.',
+	'pages.organisations.detail.contact_title': 'Coordonnées',
+	'pages.organisations.detail.opening_hours_title': 'Horaires d’ouverture',
+	'pages.organisations.detail.guidance_body':
+		'Utilisez cette fiche pour choisir le mode de contact le plus sûr selon votre situation.',
 	'pages.start.title':
 		'Vérifiez de quel accompagnement vous pourriez avoir besoin pour la procédure de régularisation',
 	'pages.start.lead':

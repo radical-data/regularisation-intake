@@ -13,6 +13,27 @@ const clean = (value: string | null | undefined) => {
 	return trimmed.length > 0 ? trimmed : undefined
 }
 
+const slugify = (value: string) =>
+	value
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase()
+		.replace(/&/g, ' and ')
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-+|-+$/g, '')
+
+const buildUniqueSlugs = (entries: RawOrganisationRecord[]) => {
+	const counts = new Map<string, number>()
+
+	return entries.map((entry) => {
+		const baseSlug = slugify(entry.name) || slugify(entry.id) || 'organisation'
+		const seen = counts.get(baseSlug) ?? 0
+		counts.set(baseSlug, seen + 1)
+
+		return seen === 0 ? baseSlug : `${baseSlug}-${seen + 1}`
+	})
+}
+
 const cleanLocation = (value: RawOrganisationRecord['location']): string | null => {
 	if (!value) return null
 
@@ -74,8 +95,9 @@ const buildOpeningHoursRows = (value: RawOrganisationOpeningHours): OpeningHours
 	return rows
 }
 
-const normaliseOrganisation = (entry: RawOrganisationRecord): OrganisationRecord => ({
+const normaliseOrganisation = (entry: RawOrganisationRecord, slug: string): OrganisationRecord => ({
 	id: entry.id,
+	slug,
 	name: entry.name.trim(),
 	website: clean(entry.website) ?? null,
 	location: cleanLocation(entry.location),
@@ -84,7 +106,9 @@ const normaliseOrganisation = (entry: RawOrganisationRecord): OrganisationRecord
 	openingHours: buildOpeningHoursRows(entry.opening_hours)
 })
 
-const records = (organisationsData as RawOrganisationRecord[]).map(normaliseOrganisation)
+const rawRecords = organisationsData as RawOrganisationRecord[]
+const slugs = buildUniqueSlugs(rawRecords)
+const records = rawRecords.map((entry, index) => normaliseOrganisation(entry, slugs[index]))
 
 const searchableText = (entry: OrganisationRecord) =>
 	[
@@ -109,6 +133,8 @@ export const filterOrganisations = (filters: OrganisationDirectoryFilters) => {
 		return true
 	})
 }
+
+export const getOrganisationBySlug = (slug: string) => records.find((entry) => entry.slug === slug) ?? null
 
 export const getDirectorySummary = (items: OrganisationRecord[]) => {
 	const withWebsite = items.filter((entry) => entry.website).length

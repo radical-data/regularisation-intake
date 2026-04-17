@@ -150,6 +150,9 @@ const formatTimeRanges = (value: string) => value.replace(/(\d{2}:\d{2})-(\d{2}:
 							</div>
 						</CardHeader>
 						<CardFooter class="gap-3 px-6 pb-4">
+							<Button href={`/organisations/${organisation.slug}`} variant="outline">
+								{tt('pages.organisations.action.view_details')}
+							</Button>
 							{#if organisation.website}
 								<Button
 									href={organisation.website}

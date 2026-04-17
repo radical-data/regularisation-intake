@@ -64,8 +64,17 @@ export const ar = {
 	'pages.organisations.action.visit_website': 'زيارة الموقع',
 	'pages.organisations.action.email': 'إرسال بريد إلكتروني',
 	'pages.organisations.action.call': 'اتصال',
+	'pages.organisations.action.view_details': 'عرض التفاصيل',
 	'pages.organisations.action.browse_all': 'تصفح كل الجهات',
 	'pages.organisations.action.start_screener': 'ابدأ الأداة',
+	'pages.organisations.detail.meta_has_phone': 'الهاتف متاح',
+	'pages.organisations.detail.meta_has_website': 'الموقع متاح',
+	'pages.organisations.detail.lead':
+		'راجع قنوات التواصل وساعات العمل قبل التواصل مع هذه الجهة.',
+	'pages.organisations.detail.contact_title': 'بيانات التواصل',
+	'pages.organisations.detail.opening_hours_title': 'ساعات العمل',
+	'pages.organisations.detail.guidance_body':
+		'استخدم صفحة التفاصيل لاختيار طريقة التواصل الأكثر أماناً لوضعك.',
 	'pages.start.title': 'تحقّق من نوع الدعم الذي قد تحتاجه لعملية التسوية',
 	'pages.start.lead': 'استخدم هذا الاستبيان لفهم ما قد تكون عليه خطوتك التالية.',
 	'pages.start.not_official': 'هذا ليس الطلب الحكومي الرسمي.',

@@ -20,6 +20,7 @@ export interface OpeningHoursRow {
 
 export interface OrganisationRecord {
 	id: string
+	slug: string
 	name: string
 	website: string | null
 	location: string | null

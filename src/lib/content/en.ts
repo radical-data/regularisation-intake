@@ -59,8 +59,17 @@ export const en = {
 	'pages.organisations.action.visit_website': 'Visit website',
 	'pages.organisations.action.email': 'Email',
 	'pages.organisations.action.call': 'Call',
+	'pages.organisations.action.view_details': 'View details',
 	'pages.organisations.action.browse_all': 'Browse all organisations',
 	'pages.organisations.action.start_screener': 'Start the screener',
+	'pages.organisations.detail.meta_has_phone': 'Phone available',
+	'pages.organisations.detail.meta_has_website': 'Website available',
+	'pages.organisations.detail.lead':
+		'Review the contact channels and opening hours before reaching out to this organisation.',
+	'pages.organisations.detail.contact_title': 'Contact details',
+	'pages.organisations.detail.opening_hours_title': 'Opening hours',
+	'pages.organisations.detail.guidance_body':
+		'Use this organisation detail page to choose the safest contact method for your situation.',
 	'pages.start.title': 'Check what support you may need for the regularisation process',
 	'pages.start.lead': 'Use this checker to understand your likely next step.',
 	'pages.start.not_official': 'This is not the official government application.',
