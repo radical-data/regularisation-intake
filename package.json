@@ -37,6 +37,7 @@
 		"@types/node": "^24",
 		"bits-ui": "^2.17.3",
 		"clsx": "^2.1.1",
+		"fuse.js": "^7.1.0",
 		"pdf-lib": "^1.17.1",
 		"shadcn-svelte": "^1.2.7",
 		"svelte": "^5.55.2",

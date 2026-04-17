@@ -1,3 +1,4 @@
+import Fuse from 'fuse.js'
 import organisationsData from './data/organisations.json'
 import type {
 	OpeningHoursRow,
@@ -12,6 +13,15 @@ const clean = (value: string | null | undefined) => {
 	const trimmed = value.replace(/\s+/g, ' ').replace(/\s+,/g, ',').trim()
 	return trimmed.length > 0 ? trimmed : undefined
 }
+
+const normaliseSearchText = (value: string | null | undefined) =>
+	(value ?? '')
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase()
+		.replace(/[^a-z0-9\s]/g, ' ')
+		.replace(/\s+/g, ' ')
+		.trim()
 
 const slugify = (value: string) =>
 	value
@@ -108,33 +118,80 @@ const normaliseOrganisation = (entry: RawOrganisationRecord, slug: string): Orga
 
 const rawRecords = organisationsData as RawOrganisationRecord[]
 const slugs = buildUniqueSlugs(rawRecords)
+
 const records = rawRecords.map((entry, index) => normaliseOrganisation(entry, slugs[index]))
 
-const searchableText = (entry: OrganisationRecord) =>
-	[
-		entry.name,
-		entry.location ?? '',
-		entry.email ?? '',
-		entry.phone ?? '',
-		entry.website ?? '',
-		...entry.openingHours.flatMap((row) => [String(row.startDay), String(row.endDay), row.hours])
+interface SearchDocument {
+	record: OrganisationRecord
+	name: string
+	location: string
+	email: string
+	phone: string
+	website: string
+	hours: string
+	fullText: string
+}
+
+const searchDocuments: SearchDocument[] = records.map((record) => {
+	const name = normaliseSearchText(record.name)
+	const location = normaliseSearchText(record.location)
+	const email = normaliseSearchText(record.email)
+	const phone = normaliseSearchText(record.phone)
+	const website = normaliseSearchText(record.website)
+	const hours = normaliseSearchText(record.openingHours.map((row) => row.hours).join(' '))
+	const fullText = [name, location, email, phone, website, hours].filter(Boolean).join(' ')
+
+	return {
+		record,
+		name,
+		location,
+		email,
+		phone,
+		website,
+		hours,
+		fullText
+	}
+})
+
+const fuse = new Fuse(searchDocuments, {
+	includeScore: true,
+	ignoreLocation: true,
+	threshold: 0.3,
+	keys: [
+		{ name: 'name', weight: 0.5 },
+		{ name: 'location', weight: 0.25 },
+		{ name: 'email', weight: 0.1 },
+		{ name: 'phone', weight: 0.05 },
+		{ name: 'website', weight: 0.07 },
+		{ name: 'hours', weight: 0.03 }
 	]
-		.join(' ')
-		.toLowerCase()
+})
 
 export const getAllOrganisations = () => records
 
 export const filterOrganisations = (filters: OrganisationDirectoryFilters) => {
-	const q = filters.q.trim().toLowerCase()
-	return records.filter((entry) => {
-		if (q && !searchableText(entry).includes(q)) {
-			return false
-		}
-		return true
-	})
+	const q = normaliseSearchText(filters.q)
+
+	if (!q) {
+		return records
+	}
+
+	if (q.length < 2) {
+		return searchDocuments
+			.filter(
+				(entry) =>
+					entry.name.includes(q) || entry.location.includes(q) || entry.fullText.includes(q)
+			)
+			.map((entry) => entry.record)
+	}
+
+	return fuse
+		.search(q)
+		.map((result) => result.item.record)
 }
 
-export const getOrganisationBySlug = (slug: string) => records.find((entry) => entry.slug === slug) ?? null
+export const getOrganisationBySlug = (slug: string) =>
+	records.find((entry) => entry.slug === slug) ?? null
 
 export const getDirectorySummary = (items: OrganisationRecord[]) => {
 	const withWebsite = items.filter((entry) => entry.website).length
