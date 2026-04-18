@@ -18,7 +18,6 @@ export interface HandoverPacket {
 	resultTitle: string
 	eligibility: string
 	recommendedRoute: RecommendedRoute
-	nextStep: string
 	routeBody: string
 	officialPortalUrl: string
 	collaboratorsPdfUrl: string
@@ -60,9 +59,8 @@ export const buildHandoverPacket = (state: JourneyState, locale: Locale): Handov
 		locale,
 		resultState: result.resultState,
 		resultTitle: tt(`result.title.${result.resultState}` as MessageKey),
-		eligibility: tt(result.summary.eligibilityKey),
+		eligibility: tt(result.explanationKey),
 		recommendedRoute: result.recommendedRoute,
-		nextStep: tt(result.summary.nextStepKey),
 		routeBody: tt(getRouteBodyKey(result.recommendedRoute)),
 		officialPortalUrl: OFFICIAL_PORTAL_URL,
 		collaboratorsPdfUrl: COLLABORATORS_PDF_URL,

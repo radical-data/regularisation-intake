@@ -3,12 +3,21 @@ import type { MessageKey } from './index'
 export const fr = {
 	'common.not_answered': 'Sans réponse',
 	'common.choose_an_option': 'Choisissez une option',
-	'common.choose_month': 'Choisissez un mois',
-	'common.choose_one_answer': 'Choisissez une réponse',
-	'common.choose_all_that_apply': 'Cochez toutes les réponses qui s’appliquent',
 	'common.continue': 'Continuer',
 	'common.back': 'Retour',
 	'common.problem': 'Il y a un problème',
+	'common.change': 'Modifier',
+	'common.see_result': 'Voir le résultat',
+	'common.review_answers': 'Vérifier vos réponses',
+	'common.start_again': 'Recommencer',
+	'common.download_handover_pdf': 'Télécharger le PDF du résumé',
+	'common.see_support_options': 'Voir les options d’aide',
+	'common.open_official_portal': 'Ouvrir le portail officiel de régularisation',
+	'common.back_to_answers': 'Retour aux réponses',
+	'common.visit_website': 'Visiter le site web',
+	'common.email': 'E-mail',
+	'common.call': 'Appeler',
+	'common.open_directory': 'Ouvrir le répertoire',
 	'chrome.skip_to_main': 'Aller au contenu principal',
 	'chrome.app_title': 'Primer Paso',
 	'chrome.meta_description':
@@ -27,7 +36,6 @@ export const fr = {
 	'chrome.footer.attribution_prefix': 'Développé par',
 	'chrome.footer.attribution_name': 'Radical Data',
 	'chrome.footer.disclaimer': 'Il ne remplace ni un conseil juridique ni une décision officielle.',
-	'chrome.footer.link.radical_data': 'Site web de Radical Data',
 	'chrome.footer.link.official_portal': 'Portail officiel',
 	'chrome.language_switcher_label': 'Langue',
 	'pages.home.eyebrow': 'Pour commencer',
@@ -46,7 +54,6 @@ export const fr = {
 	'pages.home.directory_title': 'Trouver une organisation collaboratrice',
 	'pages.home.directory_body':
 		'Consultez le répertoire sans remplir le formulaire. Recherchez par nom, province ou coordonnées.',
-	'pages.home.directory_action': 'Ouvrir le répertoire',
 	'pages.home.note_title': 'Avant de commencer',
 	'pages.home.note_body':
 		'Ce service fournit une orientation pratique. Il ne remplace ni un conseil juridique ni une décision officielle.',
@@ -83,21 +90,12 @@ export const fr = {
 	'pages.organisations.clear': 'Effacer',
 	'pages.organisations.summary.one': '{count} organisation trouvée',
 	'pages.organisations.summary.many': '{count} organisations trouvées',
-	'pages.organisations.summary.with_website': '{count} avec site web',
-	'pages.organisations.summary.with_phone': '{count} avec téléphone',
-	'pages.organisations.summary.with_email': '{count} avec e-mail',
-	'pages.organisations.badge.website': 'site web disponible',
-	'pages.organisations.badge.phone': 'téléphone disponible',
-	'pages.organisations.badge.email': 'e-mail disponible',
 	'pages.organisations.empty_title': 'Aucune organisation ne correspond à ces filtres',
 	'pages.organisations.empty_body':
 		'Essayez une recherche plus large ou parcourez le répertoire complet.',
 	'pages.organisations.guidance_title': 'Besoin d’un accompagnement personnalisé d’abord ?',
 	'pages.organisations.guidance_body':
 		'Si vous ne savez pas par où commencer, utilisez d’abord le questionnaire puis revenez au répertoire.',
-	'pages.organisations.action.visit_website': 'Visiter le site web',
-	'pages.organisations.action.email': 'E-mail',
-	'pages.organisations.action.call': 'Appeler',
 	'pages.organisations.action.view_details': 'Voir les détails',
 	'pages.organisations.action.browse_all': 'Parcourir toutes les organisations',
 	'pages.organisations.action.start_screener': 'Commencer le questionnaire',
@@ -128,10 +126,6 @@ export const fr = {
 	'pages.check_answers.title': 'Vérifiez vos réponses',
 	'pages.check_answers.hint':
 		'Vérifiez ces réponses avant de continuer. Vous pouvez modifier n’importe quelle réponse.',
-	'pages.check_answers.change': 'Modifier',
-	'pages.check_answers.see_result': 'Voir le résultat',
-	'pages.check_answers.back': 'Retour',
-	'pages.handover.eyebrow': 'Transmission',
 	'pages.handover.summary_title': 'Résumé',
 	'pages.handover.title': 'Résumé à enregistrer, imprimer ou partager',
 	'pages.handover.body':
@@ -142,33 +136,12 @@ export const fr = {
 	'pages.handover.links_title': 'Liens utiles',
 	'pages.handover.link.official_portal': 'Portail officiel de régularisation',
 	'pages.handover.link.collaborators_pdf': 'Liste officielle des organisations collaboratrices',
-	'pages.handover.next_step_title': 'Prochaine étape recommandée',
 	'pages.handover.checklist_title': 'Ce qu’il faut préparer',
 	'pages.handover.answers_title': 'Vos réponses',
 	'pages.handover.flags_title': 'Points pouvant demander une attention',
-	'pages.handover.action.print': 'Imprimer ce résumé',
-	'pages.handover.action.back_to_result': 'Retour au résultat',
 	'pages.result.eyebrow': 'Résultat',
 	'pages.result.eligibility_title': 'Votre résultat',
-	'pages.result.eligibility.likely_in_scope':
-		'D’après vos réponses, cette voie de régularisation pourrait correspondre à votre situation.',
-	'pages.result.eligibility.possible_but_needs_more_evidence':
-		'D’après vos réponses, cette voie pourrait convenir, mais il vous faudra peut-être davantage de documents avant de déposer une demande.',
-	'pages.result.eligibility.needs_specialist_review':
-		'D’après vos réponses, cette voie pourrait encore convenir, mais il serait plus prudent de la revoir avec un accompagnement avant de déposer une demande.',
-	'pages.result.eligibility.not_enough_information_yet':
-		'On ne sait pas encore si cette voie convient, car des informations importantes manquent ou restent incertaines.',
-	'pages.result.eligibility.another_route_may_fit_better':
-		'D’après vos réponses, une autre voie d’immigration pourrait mieux convenir.',
 	'pages.result.next_step_title': 'Votre prochaine étape',
-	'pages.result.next_step.review_answers_first':
-		'Vérifiez d’abord à nouveau vos réponses, surtout vos dates et votre chronologie. Si elles sont correctes, une autre voie d’immigration pourrait mieux convenir.',
-	'pages.result.next_step.official_portal':
-		'Allez sur le portail officiel de régularisation quand vous êtes prêt·e à continuer.',
-	'pages.result.next_step.collaborating_organisation':
-		'Apportez ce résumé à une organisation partenaire avant de continuer.',
-	'pages.result.next_step.collaborating_organisation_hint':
-		'Ouvrez la liste officielle et choisissez une organisation partenaire qui pourra examiner votre dossier avec vous.',
 	'pages.result.why_title': 'Pourquoi nous pensons cela',
 	'pages.result.checklist_title': 'Ce qu’il faut préparer',
 	'pages.result.checklist.already_have': 'Ce que vous avez déjà',
@@ -193,58 +166,18 @@ export const fr = {
 	'pages.result.another_route.support_body':
 		'Si vos réponses sont correctes et que vous avez encore besoin d’aide, vous pourriez avoir intérêt à demander un avis personnalisé avant de choisir la prochaine étape.',
 	'pages.result.support_title': 'Obtenir de l’aide',
-	'pages.result.support.body':
-		'Ce questionnaire ne constitue pas un conseil juridique. L’aide disponible près de chez vous peut dépendre de votre province : {province}.',
-	'pages.result.flags_title': 'Points signalés',
-	'pages.result.reference_title': 'Conservez cette référence',
-	'pages.result.reference_body': 'Numéro de référence : {sessionId}',
-	'pages.result.action.official_portal': 'Utiliser le portail officiel de régularisation',
-	'pages.result.action.open_official_portal': 'Ouvrir le portail officiel de régularisation',
-	'pages.result.action.open_collaborators_pdf':
-		'Ouvrir la liste officielle des organisations partenaires',
-	'pages.result.action.collaborators_pdf': 'Voir la liste officielle des organisations partenaires',
-	'pages.result.action.print_handover': 'Télécharger le PDF du résumé',
-	'pages.result.action.download_handover_json': 'Télécharger le JSON du résumé',
-	'pages.result.action.review_answers': 'Vérifier vos réponses',
-	'pages.result.action.see_support_options': 'Voir les options d’aide',
-	'pages.result.action.back_to_answers': 'Retour aux réponses',
-	'pages.result.action.start_again': 'Recommencer',
-	'pages.confirmation.eyebrow': 'Confirmation',
-	'pages.confirmation.title': 'Votre résultat est prêt',
-	'pages.confirmation.body':
-		'Conservez cette page. Elle comprend votre numéro de référence et une copie de vos réponses.',
-	'pages.confirmation.reference_number': 'Numéro de référence',
-	'pages.confirmation.updated': 'Mis à jour',
-	'pages.confirmation.hint': 'Enregistrez, imprimez ou faites une capture d’écran de cette page.',
-	'pages.confirmation.action.view_answers': 'Voir vos réponses',
-	'pages.confirmation.action.back_to_result': 'Retour au résultat',
-	'pages.confirmation.action.start_again': 'Recommencer',
+	'pages.result.collaborating_cta.hint':
+		'Utilisez l’annuaire des organisations pour trouver une organisation partenaire qui peut vous aider.',
+	'pages.result.collaborating_cta.title': 'Trouver une organisation collaboratrice',
+	'pages.result.collaborating_cta.lead':
+		'Parcourez l’annuaire public des organisations collaboratrices sans refaire le questionnaire.',
+	'common.choose_month': 'Choisissez un mois',
+	'common.choose_one_answer': 'Choisissez une réponse',
+	'common.choose_all_that_apply': 'Cochez toutes les réponses qui s’appliquent',
 	'eyebrows.session_setup': 'Pour commencer',
 	'eyebrows.eligibility': 'Éligibilité',
-	'eyebrows.route_split': 'Éligibilité',
-	'eyebrows.route_asylum': 'Documents',
-	'eyebrows.route_non_asylum': 'Éligibilité',
-	'eyebrows.identity': 'Documents',
 	'eyebrows.documents': 'Documents',
-	'eyebrows.evidence_cutoff': 'Documents',
-	'eyebrows.evidence_recent': 'Documents',
-	'eyebrows.specialist': 'Besoins d’accompagnement',
-	'eyebrows.routing': 'Besoins d’accompagnement',
-	'eyebrows.referral': 'Aide locale',
 	'eyebrows.support': 'Besoins d’accompagnement',
-	'eyebrows.contact': 'Comment nous pouvons vous contacter',
-	'months.january': 'Janvier',
-	'months.february': 'Février',
-	'months.march': 'Mars',
-	'months.april': 'Avril',
-	'months.may': 'Mai',
-	'months.june': 'Juin',
-	'months.july': 'Juillet',
-	'months.august': 'Août',
-	'months.september': 'Septembre',
-	'months.october': 'Octobre',
-	'months.november': 'Novembre',
-	'months.december': 'Décembre',
 	'steps.language.title': 'Choisissez une langue',
 	'steps.language.hint': 'Vous pouvez changer de langue à tout moment sans perdre vos réponses.',
 	'steps.language.check_answers_label': 'Langue',
@@ -271,19 +204,6 @@ export const fr = {
 	'steps.common.options.yes': 'Oui',
 	'steps.common.options.no': 'Non',
 	'steps.common.options.not_sure': 'Je ne suis pas sûr·e',
-	'steps.residence_start.title': 'Quand avez-vous commencé à vivre en Espagne ?',
-	'steps.residence_start.hint': 'Un mois approximatif suffit.',
-	'steps.residence_start.check_answers_label':
-		'Date à laquelle vous avez commencé à vivre en Espagne',
-	'steps.residence_start.error': 'Choisissez quand vous avez commencé à vivre en Espagne.',
-	'steps.residence_start.month_error':
-		'Choisissez le mois ou indiquez que vous n’êtes pas sûr·e du mois.',
-	'steps.residence_start.options.2024_or_earlier': 'En 2024 ou avant',
-	'steps.residence_start.options.2025': 'En 2025',
-	'steps.residence_start.options.2026': 'En 2026',
-	'steps.residence_start.options.not_sure': 'Je ne suis pas sûr·e',
-	'steps.residence_start.month_prompt': 'Quel mois était-ce, approximativement ?',
-	'steps.residence_start.month_unknown': 'Je ne suis pas sûr·e du mois',
 	'steps.asylum_history.title':
 		'Avez-vous demandé l’asile ou une protection internationale en Espagne ?',
 	'steps.asylum_history.check_answers_label': 'Asile ou protection internationale en Espagne',
@@ -391,9 +311,13 @@ export const fr = {
 	'steps.specialist_flags.options.want_specialist':
 		'Je préfère parler de cela avec une personne spécialisée',
 	'steps.specialist_flags.options.none': 'Aucune de ces réponses',
+	'steps.support_needs.check_answers_label': 'Aide nécessaire',
+	'steps.province.title': 'Dans quelle province êtes-vous ?',
+	'steps.province.hint': 'Cela nous aide à vous montrer des options d’aide près de chez vous.',
+	'steps.province.check_answers_label': 'Province',
+	'steps.province.error': 'Choisissez une province.',
 	'steps.support_needs.title': 'Quel type d’aide vous serait le plus utile ?',
 	'steps.support_needs.error': 'Choisissez au moins une option.',
-	'steps.support_needs.check_answers_label': 'Aide nécessaire',
 	'steps.support_needs.options.another_language': 'Aide dans une autre langue',
 	'steps.support_needs.options.in_person_help': 'Aide en présentiel',
 	'steps.support_needs.options.phone_support': 'Aide par téléphone',
@@ -406,47 +330,6 @@ export const fr = {
 	'steps.support_needs.options.child_or_dependant_support':
 		'Aide également pour des enfants ou des personnes à charge',
 	'steps.support_needs.options.specialist_advice': 'Avis spécialisé',
-	'steps.province.title': 'Dans quelle province êtes-vous ?',
-	'steps.province.hint': 'Cela nous aide à vous montrer des options d’aide près de chez vous.',
-	'steps.province.check_answers_label': 'Province',
-	'steps.province.error': 'Choisissez une province.',
-	'steps.province.options.madrid': 'Madrid',
-	'steps.province.options.barcelona': 'Barcelona',
-	'steps.province.options.valencia': 'Valencia',
-	'steps.province.options.sevilla': 'Sevilla',
-	'steps.province.options.malaga': 'Málaga',
-	'steps.province.options.alicante': 'Alicante',
-	'steps.province.options.bizkaia': 'Bizkaia',
-	'steps.province.options.zaragoza': 'Zaragoza',
-	'steps.province.options.murcia': 'Murcia',
-	'steps.province.options.other': 'Une autre province',
-	'steps.referral.title': 'Voulez-vous de l’aide pour la prochaine étape ?',
-	'steps.referral.body':
-		'Selon votre résultat, vous pourriez vouloir de l’aide pour rassembler des documents, parler à une personne spécialisée ou déposer votre demande.',
-	'steps.referral.error': 'Choisissez le type d’aide que vous souhaitez ensuite.',
-	'steps.referral.options.contact_me': 'Oui, je voudrais que quelqu’un me contacte',
-	'steps.referral.options.show_options': 'Oui, montrez-moi des options d’aide près de chez moi',
-	'steps.referral.options.no_thanks': 'Non, je vais conserver cela pour l’instant',
-	'steps.contact.title': 'Comment devons-nous vous contacter ?',
-	'steps.contact.hint': 'Choisissez le moyen le plus sûr.',
-	'steps.contact.error': 'Choisissez comment nous devons vous contacter.',
-	'steps.contact.detail_required_error':
-		'Indiquez la coordonnée correspondant au mode de contact choisi.',
-	'steps.contact.detail_label': 'Coordonnée',
-	'steps.contact.options.sms': 'SMS',
-	'steps.contact.options.whatsapp': 'WhatsApp',
-	'steps.contact.options.phone': 'Appel téléphonique',
-	'steps.contact.options.email': 'E-mail',
-	'steps.contact.options.do_not_contact_yet': 'Ne me contactez pas pour le moment',
-	'steps.contact.options.through_organisation':
-		'Par l’intermédiaire de l’organisation qui m’aide actuellement',
-	'answers.residence_start.2024_or_earlier': '2024 ou avant',
-	'answers.residence_start.2026': '2026',
-	'answers.residence_start.not_sure': 'Je ne suis pas sûr·e',
-	'answers.residence_start.2025': '2025',
-	'answers.residence_start.2025_month_unknown': '2025 — mois inconnu',
-	'answers.residence_start.2025_month': '{month} 2025',
-	'answers.contact.with_value': '{method} : {value}',
 	'result.reason.after_cutoff':
 		'Vous avez indiqué que vous ne viviez pas encore en Espagne avant le 1er janvier 2026.',
 	'result.reason.specialist_review':
@@ -471,26 +354,6 @@ export const fr = {
 		'D’après vos réponses, cette voie pourrait correspondre à votre situation, mais il vous faudra peut-être davantage de documents avant de déposer votre demande.',
 	'result.explanation.likely_in_scope':
 		'Vos réponses suggèrent que vous pourriez pouvoir utiliser cette procédure de régularisation.',
-	'result.next_step.other_route_advice':
-		'Demandez conseil pour savoir si une autre voie migratoire conviendrait mieux à votre situation.',
-	'result.next_step.try_again_later':
-		'Si votre situation change, vous pourrez vérifier cette voie de nouveau plus tard.',
-	'result.next_step.keep_residence_documents':
-		'Conservez tous les documents montrant votre historique de résidence en Espagne.',
-	'result.next_step.speak_to_specialist':
-		'Parlez à une organisation d’accompagnement spécialisée avant de déposer votre demande.',
-	'result.next_step.keep_papers_together':
-		'Gardez ensemble vos pièces d’identité et toutes les preuves datées pour qu’elles puissent être examinées.',
-	'result.next_step.confirm_timeline':
-		'Essayez de confirmer si vous étiez déjà en Espagne avant le 1er janvier 2026 et si vous y êtes resté·e pendant toute la période de 5 mois avant de déposer votre demande.',
-	'result.next_step.ask_for_help_if_unsure':
-		'Si vous n’êtes pas sûr·e, utilisez le mode accompagné ou demandez de l’aide à une organisation de soutien.',
-	'result.next_step.gather_before_cutoff':
-		'Essayez de rassembler des documents datés montrant que vous viviez en Espagne avant janvier 2026.',
-	'result.next_step.gather_recent':
-		'Rassemblez aussi, si possible, des documents récents des 5 derniers mois.',
-	'result.next_step.use_official_channel':
-		'Utilisez le canal officiel de dépôt des demandes avant le 30 juin 2026.',
 	'result.flag.uncertain_timeline': 'La chronologie est incertaine',
 	'result.flag.five_month_requirement_risk': 'Risque possible concernant la continuité',
 	'result.flag.hard_gate_after_cutoff': 'Le début de résidence est postérieur à la date limite',
@@ -540,13 +403,5 @@ export const fr = {
 	'result.title.another_route_may_fit_better':
 		'Cette voie n’est probablement pas la bonne pour vous',
 	'result.title.not_enough_information_yet':
-		'Nous avons besoin d’un peu plus d’informations avant de suggérer une prochaine étape',
-	'result.lead.likely_in_scope': 'Vous pourriez pouvoir utiliser cette voie',
-	'result.lead.possible_but_needs_more_evidence':
-		'Cette voie pourrait convenir, mais vous aurez peut-être besoin de davantage de documents d’abord',
-	'result.lead.needs_specialist_review':
-		'Vous pourriez avoir besoin d’une aide spécialisée avant de faire votre demande',
-	'result.lead.not_enough_information_yet':
-		'Nous avons besoin d’un peu plus d’informations avant de suggérer une prochaine étape',
-	'result.lead.another_route_may_fit_better': 'Cette voie n’est probablement pas la bonne pour vous'
+		'Nous avons besoin d’un peu plus d’informations avant de suggérer une prochaine étape'
 } satisfies Partial<Record<MessageKey, string>>

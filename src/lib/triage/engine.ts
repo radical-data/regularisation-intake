@@ -5,7 +5,7 @@ import type {
 	JourneyAnswers
 } from '$lib/journey/types'
 
-import type { PreparationChecklist, ResultSummary, TriageResult } from './types'
+import type { PreparationChecklist, TriageResult } from './types'
 
 const hasAnyStrongBeforeCutoffEvidence = (values: EvidenceBeforeCutoffValue[] = []) =>
 	values.some((value) =>
@@ -120,31 +120,6 @@ const buildChecklist = (
 	}
 }
 
-const getResultSummary = (
-	resultState: TriageResult['resultState'],
-	recommendedRoute: TriageResult['recommendedRoute']
-): ResultSummary => {
-	const eligibilityKey =
-		resultState === 'likely_in_scope'
-			? 'pages.result.eligibility.likely_in_scope'
-			: resultState === 'possible_but_needs_more_evidence'
-				? 'pages.result.eligibility.possible_but_needs_more_evidence'
-				: resultState === 'needs_specialist_review'
-					? 'pages.result.eligibility.needs_specialist_review'
-					: resultState === 'not_enough_information_yet'
-						? 'pages.result.eligibility.not_enough_information_yet'
-						: 'pages.result.eligibility.another_route_may_fit_better'
-
-	const nextStepKey =
-		resultState === 'another_route_may_fit_better'
-			? 'pages.result.next_step.review_answers_first'
-			: recommendedRoute === 'official_portal'
-				? 'pages.result.next_step.official_portal'
-				: 'pages.result.next_step.collaborating_organisation'
-
-	return { eligibilityKey, nextStepKey }
-}
-
 const getChecklist = (
 	answers: JourneyAnswers,
 	resultState: TriageResult['resultState'],
@@ -212,13 +187,8 @@ export const runTriage = (answers: JourneyAnswers): TriageResult => {
 			showHowToApply: false,
 			showSupportCta: true,
 			showDocumentCta: false,
-			summary: getResultSummary(resultState, recommendedRoute),
 			checklist: getChecklist(answers, resultState, recommendedRoute),
 			explanationKey: 'result.explanation.after_cutoff',
-			nextStepKeys: [
-				'result.next_step.other_route_advice',
-				'result.next_step.keep_residence_documents'
-			],
 			humanReviewRecommended: false
 		}
 	}
@@ -266,13 +236,8 @@ export const runTriage = (answers: JourneyAnswers): TriageResult => {
 			showHowToApply: false,
 			showSupportCta: true,
 			showDocumentCta: false,
-			summary: getResultSummary(resultState, recommendedRoute),
 			checklist: getChecklist(answers, resultState, recommendedRoute),
 			explanationKey: 'result.explanation.specialist_review',
-			nextStepKeys: [
-				'result.next_step.speak_to_specialist',
-				'result.next_step.keep_papers_together'
-			],
 			humanReviewRecommended: true
 		}
 	}
@@ -294,13 +259,8 @@ export const runTriage = (answers: JourneyAnswers): TriageResult => {
 			showHowToApply: false,
 			showSupportCta: true,
 			showDocumentCta: false,
-			summary: getResultSummary(resultState, recommendedRoute),
 			checklist: getChecklist(answers, resultState, recommendedRoute),
 			explanationKey: 'result.explanation.not_enough_information',
-			nextStepKeys: [
-				'result.next_step.confirm_timeline',
-				'result.next_step.ask_for_help_if_unsure'
-			],
 			humanReviewRecommended: false
 		}
 	}
@@ -323,10 +283,8 @@ export const runTriage = (answers: JourneyAnswers): TriageResult => {
 			showHowToApply: true,
 			showSupportCta: true,
 			showDocumentCta: true,
-			summary: getResultSummary(resultState, recommendedRoute),
 			checklist: getChecklist(answers, resultState, recommendedRoute),
 			explanationKey: 'result.explanation.more_evidence',
-			nextStepKeys: ['result.next_step.gather_before_cutoff', 'result.next_step.gather_recent'],
 			humanReviewRecommended: false
 		}
 	}
@@ -344,13 +302,8 @@ export const runTriage = (answers: JourneyAnswers): TriageResult => {
 		showHowToApply: true,
 		showSupportCta: true,
 		showDocumentCta: false,
-		summary: getResultSummary(resultState, recommendedRoute),
 		checklist: getChecklist(answers, resultState, recommendedRoute),
 		explanationKey: 'result.explanation.likely_in_scope',
-		nextStepKeys: [
-			'result.next_step.keep_papers_together',
-			'result.next_step.use_official_channel'
-		],
 		humanReviewRecommended: false
 	}
 }

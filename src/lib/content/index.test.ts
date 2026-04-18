@@ -31,7 +31,6 @@ describe('content localisation', () => {
 		expect(translate('es', 'steps.support_needs.options.child_or_dependant_support')).toBe(
 			'Ayuda también para niños, niñas o personas dependientes'
 		)
-		expect(translate('en', 'chrome.app_title')).toBe('Primer Paso')
 		expect(translate('es', 'chrome.brand')).toBe('Primer Paso')
 		expect(translate('fr', 'chrome.brand')).toBe('Primer Paso')
 		expect(translate('en', 'chrome.skip_to_main')).toBe('Skip to main content')

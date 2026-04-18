@@ -66,7 +66,7 @@ const structuredData = $derived(
 					<CardContent />
 					<CardFooter>
 						<Button href={localiseHref(locale, '/organisations')} variant="secondary">
-							{tt('pages.home.directory_action')}
+							{tt('common.open_directory')}
 						</Button>
 					</CardFooter>
 				</Card>
@@ -98,9 +98,8 @@ const structuredData = $derived(
 			<p class="supporting-text">{tt('pages.home.seo_support_body')}</p>
 			<div class="actions">
 				<Button href={localiseHref(locale, '/organisations')} variant="secondary"
-					>{tt('pages.home.directory_action')}</Button
+					>{tt('common.open_directory')}</Button
 				>
-				<Button href="https://inclusion.gob.es/regularizacion" target="_blank" rel="noreferrer">
 					{tt('pages.home.official_portal_action')}
 					<ExternalLinkIcon class="size-4" />
 				</Button>

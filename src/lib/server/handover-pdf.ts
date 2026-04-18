@@ -197,8 +197,9 @@ export const buildHandoverPdf = async (
 
 	gap(10)
 	drawSectionTitle(tt('pages.handover.summary_title'))
-	drawWrapped(`${tt('pages.result.eligibility_title')}: ${packet.eligibility}`)
-	drawWrapped(`${tt('pages.result.next_step_title')}: ${packet.nextStep}`)
+	drawWrapped(packet.resultTitle, BODY_SIZE, true)
+	gap(1)
+	drawWrapped(packet.eligibility)
 	gap(4)
 	drawWrapped(packet.routeBody)
 

@@ -16,11 +16,6 @@ export interface PreparationChecklist {
 	unresolved: MessageKey[]
 }
 
-export interface ResultSummary {
-	eligibilityKey: MessageKey
-	nextStepKey: MessageKey
-}
-
 export interface TriageResult {
 	resultState: ResultState
 	recommendedRoute: RecommendedRoute
@@ -30,9 +25,7 @@ export interface TriageResult {
 	showHowToApply: boolean
 	showSupportCta: boolean
 	showDocumentCta: boolean
-	summary: ResultSummary
 	checklist: PreparationChecklist
 	explanationKey: MessageKey
-	nextStepKeys: MessageKey[]
 	humanReviewRecommended: boolean
 }
