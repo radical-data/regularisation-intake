@@ -1,4 +1,5 @@
 <script lang="ts">
+import { trackEvent } from '$lib/analytics/matomo'
 import FormField from '$lib/components/forms/FormField.svelte'
 import ChoiceGroup from '$lib/components/questions/ChoiceGroup.svelte'
 import QuestionPage from '$lib/components/questions/QuestionPage.svelte'
@@ -23,6 +24,21 @@ const multiValue = $derived(
 		? rawValue.filter((entry): entry is string => typeof entry === 'string')
 		: []
 )
+
+let lastTrackedError = $state<string | null>(null)
+
+$effect(() => {
+	if (
+		typeof form?.error !== 'string' ||
+		form.error.length === 0 ||
+		form.error === lastTrackedError
+	) {
+		return
+	}
+
+	trackEvent('Journey', 'Validation error', data.step.slug)
+	lastTrackedError = form.error
+})
 </script>
 <svelte:head> <meta name="robots" content="noindex, nofollow"> </svelte:head>
 <QuestionPage
@@ -31,6 +47,7 @@ const multiValue = $derived(
 	error={currentError}
 	returnTo={data.returnTo}
 	backHref={data.backHref}
+	stepSlug={data.step.slug}
 >
 	{#if data.step.adapter === 'single-choice'}
 		<ChoiceGroup

@@ -1,21 +1,6 @@
 import type { Cookies } from '@sveltejs/kit'
-import { PROVINCE_VALUES, type ProvinceValue, provinceLabelByCode } from '$lib/generated/provinces'
-
-import type {
-	CompletionModeValue,
-	EvidenceBeforeCutoffValue,
-	EvidenceRecentValue,
-	FamilySituationValue,
-	FiveMonthStayValue,
-	IdentityDocumentValue,
-	JourneyAnswers,
-	JourneyState,
-	LanguageValue,
-	SpecialistFlagValue,
-	SupportNeedValue,
-	WorkSituationValue
-} from '$lib/journey/types'
-
+import { PROVINCE_VALUES } from '$lib/generated/provinces'
+import type { JourneyAnswers, JourneyState } from '$lib/journey/types'
 import {
 	COMPLETION_MODE_VALUES,
 	EVIDENCE_BEFORE_CUTOFF_VALUES,
@@ -73,11 +58,6 @@ const isStringArrayOf = <T extends string>(
 	value: unknown,
 	itemGuard: (entry: unknown) => entry is T
 ): value is T[] => Array.isArray(value) && value.every(itemGuard)
-
-const formatList = (values: string[]) => {
-	if (values.length === 0) return 'Not answered'
-	return values.join(', ')
-}
 
 const isJourneyState = (value: unknown): value is JourneyState => {
 	if (!value || typeof value !== 'object') {
@@ -166,153 +146,6 @@ export const clearJourneyState = (cookies: Cookies) => {
 		path: '/'
 	})
 }
-
-const labelMap =
-	<T extends string>(labels: Record<T, string>) =>
-	(value?: T) =>
-		value ? labels[value] : 'Not answered'
-
-export const formatLanguageAnswer = labelMap<LanguageValue>({
-	es: 'Español',
-	en: 'English',
-	ar: 'العربية',
-	fr: 'Français'
-})
-
-export const formatCompletionModeAnswer = labelMap<CompletionModeValue>({
-	self: 'Myself',
-	someone_else: 'Someone else, with their permission',
-	support_worker: "I'm a support worker or volunteer"
-})
-
-export const formatFiveMonthStayAnswer = labelMap<FiveMonthStayValue>({
-	yes: 'Yes',
-	left_spain: 'No, I left Spain at some point',
-	not_sure: "I'm not sure"
-})
-
-export const formatWorkSituationAnswer = (values?: WorkSituationValue[]) =>
-	formatList(
-		(values ?? []).map(
-			(value) =>
-				({
-					worked_in_spain: "I've worked in Spain",
-					job_offer: 'I have a job offer',
-					want_to_work_for_myself: 'I want to work for myself',
-					none: 'None of these',
-					not_sure: "I'm not sure"
-				})[value]
-		)
-	)
-export const formatFamilySituationAnswer = (values?: FamilySituationValue[]) =>
-	formatList(
-		(values ?? []).map(
-			(value) =>
-				({
-					child_under_18: 'I live with my child who is under 18',
-					adult_child_support_needs:
-						'I live with my adult child who needs a lot of support because of disability or health needs',
-					mother_or_father: 'I live with my mother or father',
-					none: 'None of these',
-					not_sure: "I'm not sure"
-				})[value]
-		)
-	)
-
-export const formatIdentityDocumentsAnswer = (values?: IdentityDocumentValue[]) =>
-	formatList(
-		(values ?? []).map(
-			(value) =>
-				({
-					current_passport: 'Current passport',
-					expired_passport: 'Expired passport',
-					national_identity_card: 'National identity card',
-					asylum_document: 'Asylum document',
-					travel_document: 'Travel document',
-					no_identity_documents_now: 'I do not have any identity documents with me now',
-					prefer_not_to_say: 'Prefer not to say',
-					not_sure: "I'm not sure"
-				})[value]
-		)
-	)
-
-export const formatEvidenceBeforeCutoffAnswer = (values?: EvidenceBeforeCutoffValue[]) =>
-	formatList(
-		(values ?? []).map(
-			(value) =>
-				({
-					padron_or_registration: 'Registration or padrón',
-					housing_papers: 'Housing papers',
-					health_or_pharmacy: 'Health or pharmacy papers',
-					school_or_childcare: 'School or childcare papers',
-					work_papers: 'Work papers',
-					organisation_or_church_letter: 'Letters from an organisation, church, or social worker',
-					travel_or_transport: 'Travel or transport papers',
-					something_else_dated_named: 'Something else with a date and my name on it',
-					none_yet: 'I do not have any of these yet',
-					not_sure: "I'm not sure"
-				})[value]
-		)
-	)
-
-export const formatEvidenceRecentAnswer = (values?: EvidenceRecentValue[]) =>
-	formatList(
-		(values ?? []).map(
-			(value) =>
-				({
-					housing_papers: 'Housing papers',
-					health_or_pharmacy: 'Health or pharmacy papers',
-					school_or_childcare: 'School or childcare papers',
-					work_papers: 'Work papers',
-					organisation_or_church_letter: 'Letters from an organisation, church, or social worker',
-					bank_or_money_transfer: 'Bank or money transfer records',
-					travel_or_dated_receipts: 'Travel or dated receipts',
-					something_else_dated_named: 'Something else with a date and my name on it',
-					none_yet: 'I do not have any of these yet',
-					not_sure: "I'm not sure"
-				})[value]
-		)
-	)
-
-export const formatSpecialistFlagsAnswer = (values?: SpecialistFlagValue[]) =>
-	formatList(
-		(values ?? []).map(
-			(value) =>
-				({
-					criminal_record_worry: "I'm worried about a criminal record or criminal case",
-					identity_missing_or_mismatch:
-						'My identity papers are missing or my details do not match across documents',
-					previous_refusal_needs_help:
-						'I had a refusal in another procedure and need help understanding it',
-					asylum_case_not_clear: "I'm not sure what happened with my asylum case",
-					unsafe_sharing_digitally: 'I do not feel safe sharing some information digitally',
-					urgent_human_support: 'I need urgent human support',
-					want_specialist: "I'd rather talk this through with a specialist",
-					none: 'None of these'
-				})[value]
-		)
-	)
-
-export const formatProvinceAnswer = (value?: ProvinceValue) =>
-	(value ? provinceLabelByCode[value] : undefined) ?? 'Not answered'
-
-export const formatSupportNeedsAnswer = (values?: SupportNeedValue[]) =>
-	formatList(
-		(values ?? []).map(
-			(value) =>
-				({
-					another_language: 'Help in another language',
-					in_person_help: 'In-person help',
-					phone_support: 'Phone support',
-					help_using_phone_or_computer: 'Help using a phone or computer',
-					help_scanning_or_printing: 'Help scanning or printing papers',
-					help_gathering_papers: 'Help understanding which papers to gather',
-					child_or_dependant_support: 'Help with children or dependants too',
-					specialist_advice: 'Specialist advice',
-					not_sure: "I'm not sure"
-				})[value]
-		)
-	)
 
 export const getSafeReturnTo = (url: URL, fallback: string) =>
 	safeRelativePath(url.searchParams.get('returnTo'), fallback)

@@ -1,4 +1,5 @@
 <script lang="ts">
+import { trackEvent } from '$lib/analytics/matomo'
 import { Button } from '$lib/components/ui/button'
 import type { Locale } from '$lib/content'
 import { getTranslator } from '$lib/content'
@@ -32,17 +33,19 @@ const tt = $derived(getTranslator(data.locale ?? 'es'))
 						<p>{answer.value}</p>
 					</div>
 					<Button href={answer.changeHref} variant="outline" size="sm"
-						>{tt('pages.check_answers.change')}</Button
+						>{tt('common.change')}</Button
 					>
 				</section>
 			{/each}
 		</div>
 
 		<div class="actions">
-			<Button href={localiseHref(data.locale ?? 'es', '/result')}
-				>{tt('pages.check_answers.see_result')}</Button
+			<Button
+				href={localiseHref(data.locale ?? 'es', '/result')}
+				onclick={() => trackEvent('Journey', 'View result', 'check_answers')}
+				>{tt('common.see_result')}</Button
 			>
-			<Button href={data.backHref} variant="outline">{tt('pages.check_answers.back')}</Button>
+			<Button href={data.backHref} variant="outline">{tt('common.back')}</Button>
 		</div>
 	</div>
 </section>

@@ -1,4 +1,5 @@
 <script lang="ts">
+import { trackEvent } from '$lib/analytics/matomo'
 import { Button } from '$lib/components/ui/button'
 import type { Locale } from '$lib/content'
 import { getTranslator } from '$lib/content'
@@ -8,12 +9,14 @@ interface Props {
 	error?: string
 	returnTo?: string
 	backHref: string
+	stepSlug?: string
 	locale?: Locale
 	children?: import('svelte').Snippet
 }
 
-let { eyebrow, error, returnTo, backHref, locale = 'es', children }: Props = $props()
+let { eyebrow, error, returnTo, backHref, stepSlug, locale = 'es', children }: Props = $props()
 const tt = $derived(getTranslator(locale))
+const trackContinue = () => trackEvent('Journey', 'Continue question', stepSlug)
 </script>
 
 <section class="stack">
@@ -37,7 +40,7 @@ const tt = $derived(getTranslator(locale))
 			{@render children?.()}
 
 			<div class="page-actions">
-				<Button type="submit">{tt('common.continue')}</Button>
+				<Button type="submit" onclick={trackContinue}>{tt('common.continue')}</Button>
 				<Button href={backHref} variant="outline">{tt('common.back')}</Button>
 			</div>
 		</form>

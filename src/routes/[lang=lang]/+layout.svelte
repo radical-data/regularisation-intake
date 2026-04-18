@@ -5,6 +5,7 @@ import '../../app.css'
 import { resolve } from '$app/paths'
 import { page } from '$app/state'
 import faviconUrl from '$lib/assets/favicon.svg?url'
+import MatomoTracker from '$lib/components/analytics/MatomoTracker.svelte'
 import { getTranslator, type Locale } from '$lib/content'
 import {
 	getAlternateLocaleHrefs,
@@ -74,6 +75,8 @@ const isCurrentNavItem = (href: string) => {
 </svelte:head>
 
 <svelte:body />
+
+<MatomoTracker />
 
 <div class="app-shell">
 	<a class="skip-link" href="#main-content">{tt('chrome.skip_to_main')}</a>

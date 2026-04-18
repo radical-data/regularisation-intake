@@ -6,6 +6,7 @@ import MailIcon from '@lucide/svelte/icons/mail'
 import MapPinIcon from '@lucide/svelte/icons/map-pin'
 import PhoneIcon from '@lucide/svelte/icons/phone'
 import SearchIcon from '@lucide/svelte/icons/search'
+import { trackEvent } from '$lib/analytics/matomo'
 import { Badge } from '$lib/components/ui/badge'
 import { Button } from '$lib/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '$lib/components/ui/card'
@@ -58,6 +59,12 @@ const formatOpeningHoursLabel = (startDay: number, endDay: number) =>
 		: `${formatWeekday(startDay)}–${formatWeekday(endDay)}`
 
 const formatTimeRanges = (value: string) => value.replace(/(\d{2}:\d{2})-(\d{2}:\d{2})/g, '$1–$2')
+
+const trackDirectorySearch = () => {
+	const query = data.filters.q.trim()
+	if (!query) return
+	trackEvent('Directory', 'Search', query)
+}
 </script>
 
 <svelte:head>
@@ -76,6 +83,7 @@ const formatTimeRanges = (value: string) => value.replace(/(\d{2}:\d{2})-(\d{2}:
 		<form
 			class="directory-toolbar"
 			method="GET"
+			onsubmit={trackDirectorySearch}
 			action={localiseHref(data.locale ?? 'es', '/organisations')}
 		>
 			<div class="form-field">
@@ -160,6 +168,8 @@ const formatTimeRanges = (value: string) => value.replace(/(\d{2}:\d{2})-(\d{2}:
 							<Button
 								href={localiseHref(data.locale ?? 'es', `/organisations/${organisation.slug}`)}
 								variant="outline"
+								onclick={() =>
+									trackEvent('Directory', 'View organisation detail', organisation.slug)}
 							>
 								{tt('pages.organisations.action.view_details')}
 							</Button>
@@ -168,20 +178,30 @@ const formatTimeRanges = (value: string) => value.replace(/(\d{2}:\d{2})-(\d{2}:
 									href={organisation.website}
 									target="_blank"
 									rel="noreferrer"
+									onclick={() =>
+										trackEvent('Directory', 'Open organisation website', organisation.slug)}
 									variant="secondary"
 								>
-									{tt('pages.organisations.action.visit_website')}
+									{tt('common.visit_website')}
 									<GlobeIcon class="size-4" />
 								</Button>
 							{/if}
 							{#if organisation.email}
-								<Button href={`mailto:${organisation.email}`} variant="outline">
-									{tt('pages.organisations.action.email')}
+								<Button
+									href={`mailto:${organisation.email}`}
+									variant="outline"
+									onclick={() => trackEvent('Directory', 'Email organisation', organisation.slug)}
+								>
+									{tt('common.email')}
 								</Button>
 							{/if}
 							{#if organisation.phone}
-								<Button href={`tel:${organisation.phone}`} variant="outline">
-									{tt('pages.organisations.action.call')}
+								<Button
+									href={`tel:${organisation.phone}`}
+									variant="outline"
+									onclick={() => trackEvent('Directory', 'Call organisation', organisation.slug)}
+								>
+									{tt('common.call')}
 								</Button>
 							{/if}
 						</CardFooter>
@@ -204,7 +224,9 @@ const formatTimeRanges = (value: string) => value.replace(/(\d{2}:\d{2})-(\d{2}:
 			<h2 class="section-title">{tt('pages.organisations.guidance_title')}</h2>
 			<p class="supporting-text">{tt('pages.organisations.guidance_body')}</p>
 			<div class="actions">
-				<Button href={localiseHref(data.locale ?? 'es', '/start')}
+				<Button
+					href={localiseHref(data.locale ?? 'es', '/start')}
+					onclick={() => trackEvent('Journey', 'Open start', 'organisations')}
 					>{tt('pages.organisations.action.start_screener')}</Button
 				>
 			</div>

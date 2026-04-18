@@ -4,6 +4,7 @@ import GlobeIcon from '@lucide/svelte/icons/globe'
 import MailIcon from '@lucide/svelte/icons/mail'
 import MapPinIcon from '@lucide/svelte/icons/map-pin'
 import PhoneIcon from '@lucide/svelte/icons/phone'
+import { trackEvent } from '$lib/analytics/matomo'
 import { Button } from '$lib/components/ui/button'
 import type { Locale } from '$lib/content'
 import { getTranslator } from '$lib/content'
@@ -93,18 +94,32 @@ const metaDescription = $derived.by(() => {
 
 				<div class="actions">
 					{#if organisation.website}
-						<Button href={organisation.website} target="_blank" rel="noreferrer">
-							{tt('pages.organisations.action.visit_website')}
+						<Button
+							href={organisation.website}
+							target="_blank"
+							rel="noreferrer"
+							onclick={() =>
+								trackEvent('Directory', 'Open organisation website', organisation.slug)}
+						>
+							{tt('common.visit_website')}
 						</Button>
 					{/if}
 					{#if organisation.email}
-						<Button href={`mailto:${organisation.email}`} variant="outline">
-							{tt('pages.organisations.action.email')}
+						<Button
+							href={`mailto:${organisation.email}`}
+							variant="outline"
+							onclick={() => trackEvent('Directory', 'Email organisation', organisation.slug)}
+						>
+							{tt('common.email')}
 						</Button>
 					{/if}
 					{#if organisation.phone}
-						<Button href={`tel:${organisation.phone}`} variant="outline">
-							{tt('pages.organisations.action.call')}
+						<Button
+							href={`tel:${organisation.phone}`}
+							variant="outline"
+							onclick={() => trackEvent('Directory', 'Call organisation', organisation.slug)}
+						>
+							{tt('common.call')}
 						</Button>
 					{/if}
 				</div>

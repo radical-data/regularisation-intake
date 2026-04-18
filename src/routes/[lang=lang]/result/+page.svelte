@@ -2,6 +2,7 @@
 import ExternalLinkIcon from '@lucide/svelte/icons/external-link'
 import FileDownIcon from '@lucide/svelte/icons/file-down'
 import ListChecksIcon from '@lucide/svelte/icons/list-checks'
+import { trackEvent } from '$lib/analytics/matomo'
 import { Badge } from '$lib/components/ui/badge'
 import { Button } from '$lib/components/ui/button'
 import { getTranslator } from '$lib/content'
@@ -51,20 +52,8 @@ const startAgainHref = $derived(localiseHref(data.locale ?? 'es', '/start?new=1'
 				</Badge>
 				<div class="section-block">
 					<h1 class="page-title">{tt('pages.result.eligibility_title')}</h1>
-					<p class="lead-text">{tt(data.result.summary.eligibilityKey)}</p>
+					<p class="lead-text">{tt(data.result.explanationKey)}</p>
 				</div>
-			</div>
-			<div class="summary-stack">
-				<div class="summary-item">
-					<p class="summary-label">{tt('pages.result.next_step_title')}</p>
-					<p class="summary-value">{tt(data.result.summary.nextStepKey)}</p>
-				</div>
-				{#if !isAnotherRoute}
-					<div class="summary-item">
-						<p class="summary-label">{tt('pages.result.handover_title')}</p>
-						<p class="summary-value">{tt('pages.result.handover.body')}</p>
-					</div>
-				{/if}
 			</div>
 		</section>
 
@@ -82,11 +71,20 @@ const startAgainHref = $derived(localiseHref(data.locale ?? 'es', '/start?new=1'
 					<p class="lead-text">{tt('pages.result.another_route.do_now.body')}</p>
 				</div>
 				<div class="actions">
-					<Button href={checkAnswersHref} variant="default">
-						{tt('pages.result.action.review_answers')}
+					<Button
+						href={checkAnswersHref}
+						variant="default"
+						onclick={() => trackEvent('Journey', 'Review answers', data.result.resultState)}
+					>
+						{tt('common.review_answers')}
 					</Button>
-					<Button href={data.handoverHref} variant="secondary">
-						{tt('pages.result.action.print_handover')}
+					<Button
+						href={data.handoverHref}
+						variant="secondary"
+						onclick={() =>
+							trackEvent('Journey', 'Download handover PDF', data.result.resultState)}
+					>
+						{tt('common.download_handover_pdf')}
 						<FileDownIcon class="size-4" />
 					</Button>
 				</div>
@@ -96,16 +94,25 @@ const startAgainHref = $derived(localiseHref(data.locale ?? 'es', '/start?new=1'
 				<h2 class="section-title">{tt('pages.result.support_title')}</h2>
 				<p class="supporting-text">{tt('pages.result.another_route.support_body')}</p>
 				<div class="actions">
-					<Button href={data.organisationsHref} variant="outline">
-						{tt('pages.result.action.see_support_options')}
+					<Button
+						href={data.organisationsHref}
+						variant="outline"
+						onclick={() =>
+							trackEvent('Directory', 'Open directory', data.result.resultState)}
+					>
+						{tt('common.see_support_options')}
 					</Button>
 				</div>
 			</section>
 
 			<section class="panel-subtle">
 				<div class="actions">
-					<Button href={startAgainHref} variant="outline">
-						{tt('pages.result.action.start_again')}
+					<Button
+						href={startAgainHref}
+						variant="outline"
+						onclick={() => trackEvent('Journey', 'Start again', data.result.resultState)}
+					>
+						{tt('common.start_again')}
 					</Button>
 				</div>
 			</section>
@@ -113,40 +120,53 @@ const startAgainHref = $derived(localiseHref(data.locale ?? 'es', '/start?new=1'
 			<section class="cta-panel">
 				<div class="section-block">
 					<h2 class="section-title">{tt('pages.result.next_step_title')}</h2>
-					<p class="lead-text">{tt(data.result.summary.nextStepKey)}</p>
+					<p class="lead-text">
+						{tt(
+							data.result.recommendedRoute === 'official_portal'
+								? 'pages.result.route.official_portal_body'
+								: 'pages.result.route.collaborating_organisation_body'
+						)}
+					</p>
 				</div>
 				{#if data.result.recommendedRoute === 'official_portal'}
 					<div class="actions">
-						<Button href={data.officialPortalUrl} target="_blank" rel="noreferrer">
-							{tt('pages.result.action.open_official_portal')}
+						<Button
+							href={data.officialPortalUrl}
+							target="_blank"
+							rel="noreferrer"
+							onclick={() =>
+								trackEvent('Journey', 'Open official portal', data.result.resultState)}
+						>
+							{tt('common.open_official_portal')}
 							<ExternalLinkIcon class="size-4" />
 						</Button>
 					</div>
 				{:else}
-					<p class="hint">
-						Use the organisations directory to find a collaborating organisation that may be able to
-						help.
-					</p>
+					<p class="hint">{tt('pages.result.collaborating_cta.hint')}</p>
 					<div class="actions">
-						<Button href={data.organisationsHref}>Find collaborating organisations</Button>
+						<Button
+							href={data.organisationsHref}
+							onclick={() =>
+								trackEvent('Directory', 'Open directory', data.result.resultState)}
+							>{tt('common.open_directory')}</Button
+						>
 					</div>
 				{/if}
 			</section>
 
 			<section class="panel section-block">
-				<h2 class="section-title">Find a collaborating organisation</h2>
-				<p class="lead-text">
-					Browse the public directory of collaborating organisations without repeating the
-					questionnaire.
-				</p>
+				<h2 class="section-title">{tt('pages.result.collaborating_cta.title')}</h2>
+				<p class="lead-text">{tt('pages.result.collaborating_cta.lead')}</p>
 				<div class="actions">
 					<Button
 						href={data.organisationsHref}
 						variant={data.result.recommendedRoute === 'collaborating_organisation'
 							? 'default'
 							: 'secondary'}
+						onclick={() =>
+							trackEvent('Directory', 'Open directory', data.result.resultState)}
 					>
-						Open organisations directory
+						{tt('common.open_directory')}
 					</Button>
 					{#if data.result.recommendedRoute === 'official_portal'}
 						<Button
@@ -154,8 +174,10 @@ const startAgainHref = $derived(localiseHref(data.locale ?? 'es', '/start?new=1'
 							target="_blank"
 							rel="noreferrer"
 							variant="outline"
+							onclick={() =>
+								trackEvent('Journey', 'Open official portal', data.result.resultState)}
 						>
-							Open official portal
+							{tt('common.open_official_portal')}
 						</Button>
 					{/if}
 				</div>
@@ -167,7 +189,6 @@ const startAgainHref = $derived(localiseHref(data.locale ?? 'es', '/start?new=1'
 						<ListChecksIcon class="size-5" aria-hidden="true" />
 						{tt('pages.result.checklist_title')}
 					</h2>
-					<p class="supporting-text">{tt(data.result.explanationKey)}</p>
 				</div>
 				<div class="result-grid">
 					{#if data.result.checklist.alreadyHave.length > 0}
@@ -225,8 +246,13 @@ const startAgainHref = $derived(localiseHref(data.locale ?? 'es', '/start?new=1'
 				<h2 class="section-title">{tt('pages.result.handover_title')}</h2>
 				<p class="lead-text">{tt('pages.result.handover.body')}</p>
 				<div class="actions">
-					<Button href={data.handoverHref} variant="secondary">
-						{tt('pages.result.action.print_handover')}
+					<Button
+						href={data.handoverHref}
+						variant="secondary"
+						onclick={() =>
+							trackEvent('Journey', 'Download handover PDF', data.result.resultState)}
+					>
+						{tt('common.download_handover_pdf')}
 						<FileDownIcon class="size-4" />
 					</Button>
 				</div>
@@ -234,11 +260,19 @@ const startAgainHref = $derived(localiseHref(data.locale ?? 'es', '/start?new=1'
 
 			<section class="panel-subtle">
 				<div class="actions">
-					<Button href={checkAnswersHref} variant="outline">
-						{tt('pages.result.action.back_to_answers')}
+					<Button
+						href={checkAnswersHref}
+						variant="outline"
+						onclick={() => trackEvent('Journey', 'Review answers', data.result.resultState)}
+					>
+						{tt('common.back_to_answers')}
 					</Button>
-					<Button href={startAgainHref} variant="outline">
-						{tt('pages.result.action.start_again')}
+					<Button
+						href={startAgainHref}
+						variant="outline"
+						onclick={() => trackEvent('Journey', 'Start again', data.result.resultState)}
+					>
+						{tt('common.start_again')}
 					</Button>
 				</div>
 			</section>

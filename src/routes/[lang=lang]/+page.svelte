@@ -1,5 +1,6 @@
 <script lang="ts">
 import ExternalLinkIcon from '@lucide/svelte/icons/external-link'
+import { trackEvent } from '$lib/analytics/matomo'
 import { Button } from '$lib/components/ui/button'
 import {
 	Card,
@@ -55,7 +56,11 @@ const structuredData = $derived(
 					</CardHeader>
 					<CardContent />
 					<CardFooter>
-						<Button href={localiseHref(locale, '/start')}>{tt('pages.home.quiz_action')}</Button>
+						<Button
+							href={localiseHref(locale, '/start')}
+							onclick={() => trackEvent('Journey', 'Open start', 'home')}
+							>{tt('pages.home.quiz_action')}</Button
+						>
 					</CardFooter>
 				</Card>
 				<Card class="task-card">
@@ -65,7 +70,11 @@ const structuredData = $derived(
 					</CardHeader>
 					<CardContent />
 					<CardFooter>
-						<Button href={localiseHref(locale, '/organisations')} variant="secondary">
+						<Button
+							href={localiseHref(locale, '/organisations')}
+							variant="secondary"
+							onclick={() => trackEvent('Directory', 'Open directory', 'home')}
+						>
 							{tt('common.open_directory')}
 						</Button>
 					</CardFooter>
@@ -99,6 +108,12 @@ const structuredData = $derived(
 			<div class="actions">
 				<Button href={localiseHref(locale, '/organisations')} variant="secondary"
 					>{tt('common.open_directory')}</Button
+				>
+				<Button
+					href="https://inclusion.gob.es/regularizacion"
+					target="_blank"
+					rel="noreferrer"
+					onclick={() => trackEvent('Journey', 'Open official portal', 'home')}
 				>
 					{tt('pages.home.official_portal_action')}
 					<ExternalLinkIcon class="size-4" />
